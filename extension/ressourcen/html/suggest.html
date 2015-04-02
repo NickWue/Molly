@@ -1,0 +1,17 @@
+<div id="suggest">
+	<h1> Suggest a Feature: </h1>
+	<form> 
+		<input type="text" class="form_name" placeholder="Idea*"/><br/>
+		<input class="form_email" type="text" placeholder="E-Mail"/><br/>
+		<textarea class="form_more"  placeholder="">More infos. (Optional)</textarea><br/>
+		<div class="buttons"> 
+			<a href="#" class="icon-checkmark lang-str send" str="save"> Send </a>
+		</div>
+	</form>
+</div>
+
+<script>
+$('#suggest .send').click(function(){
+	if ($('.form_name').val().length > 0) window.location = "https://nickw.de/myTab/suggest.php?name="+$('.form_name').val()+"&email="+$('.form_email').val()+"&more="+$('.form_more').val();
+});
+</script>

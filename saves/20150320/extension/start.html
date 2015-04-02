@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>NewTab Molly</title>
+		<link rel="stylesheet" type="text/css" href="ressourcen/css/animate.css"/>
+		<link rel="stylesheet" type="text/css" href="ressourcen/css/style.css"/>
+		<script src="ressourcen/js/jQuery.js"></script>	
+		<script src="ressourcen/js/commands.js"></script>	
+		<script src="ressourcen/js/mainfunctions.js"></script>	
+		<link rel="stylesheet" type="text/css" href="ressourcen/fonts/style.css">
+	</head>
+	<body class="animated fadeIn">	
+
+	<div id="firststeps">
+		<div class="content"> </div>
+		<div class="buttons"><span class="next"> Next </span><span class="cancel"> x </span></div>
+	</div>
+	<div id="menuopener"> 
+	
+	</div>
+	<ul id="gn-menu" class="gn-menu-main">
+		<li class="gn-trigger">
+			<a class="gn-icon icon-menu"><span class="msg" msg="menu">Menu</span></a>
+			<nav class="gn-menu-wrapper">
+				<div class="gn-scroller">
+					<ul class="gn-menu">
+						<ul class="gn-menu top-gn-menu">	
+						<div class="alllinks">
+						
+						</div>
+						
+						<li class="notdropable"><a href="" class="gn-icon link-support icon-support msg command" command="info support" msg="support">Support</a></li>
+						<li class="notdropable"><a href="./ressourcen/html/options.html" class="gn-icon link-settings icon-settings msg" msg="settings">Options</a></li>
+					</ul>
+					</ul>
+				</div><!-- /gn-scroller -->
+			</nav>
+		</li>
+	</ul>
+	<div id="sprache"> 
+	
+	</div>
+	<ul id="help"> 	
+		<div class="help-scroller"> 
+			<h2 class="msg" msg="importantcommands">  </h2>
+			<div class="first-ten"> </div>
+		</div>
+	</ul>
+	
+	
+	<!--<div id="alarm"><span class="notif_count"></span>
+		<ul id="notifications"> 
+			
+		</ul>	
+	</div>-->
+	
+	
+	<div id="MainContent" class="down"> 
+		<div id="clock">  </div>
+		<h3><span class="headline"> </span> <span id="mic" class="icon-mic"></span></h3>
+		<div id="loading"> </div>
+		<input type="text" id="MainInput"/><span class="icon refresh icon-spinner"></span>
+		<div id="vorschlaege"> 
+			<div class="scroller">
+			
+			</div>
+		</div>
+		<div id="anmerkungen"><span id="matchingCommands"></span><span id="show_card_regulary">  </span><span id="show_notif">  </span></div>
+	</div>
+	<div id="spracheingabe">
+		<div class="center"> 
+			<div class="icon-mic"> </div>
+			<p><a href="#" class="stop msg" msg="spracheingabeaktiv"></a></p>
+			<br/><p class="results"> </p>
+		</div>
+	</div>
+	<div class="cardslideropener icon-arrow-left"></div>
+	<div id="cardslider"> 
+		<div class="scroller"></div>
+		<div class="toggleregulary icon-eye"> </div>
+		
+	</div>
+	
+
+	<div id="nachricht" class="animated infinite bounce"> </div>
+	<div id="overlay"></div>
+	
+	<script src="ressourcen/js/script.js"></script>		
+	</body>
+</html>	

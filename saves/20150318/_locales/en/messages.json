@@ -1,0 +1,197 @@
+﻿{
+	"softwarename":{"message":"Molly"},
+	
+	"wusstensie1":{"message":"MSG1"},
+	"wusstensie2":{"message":"MSG2"},
+	"wusstensie3":{"message":"MSG3"},
+	"wusstensie4":{"message":"MSG4"},
+	"wusstensie5":{"message":"MSG5"},
+	"wusstensie6":{"message":"MSG6"},
+	"wusstensie7":{"message":"MSG7"},
+	"wusstensie8":{"message":"MSG8"},
+		
+	
+	"pleasewait":{"message":"Please Wait a second.."},
+	"letsstart":{"message":"Let's start"},
+	
+	"startnewtabfirst":{"message":"'Please open a new tab first!'"},
+	
+	"launch":{"message":""},
+	"doyoumean":{"message":"Do you maby mean"},
+	"pressentertostart":{"message":"Press enter to start this command:"},
+	"matching_commands":{"message":"These Commands are matching:"},
+	"nocommands":{"message":"No commands matching"},
+	"loading":{ "message" : "Loading"},
+	"needed_params":{ "message":"You need this parameters: "},
+	"typehelpforhelp":{"message":"Type 'Help' for Help "},
+	"welcome":{"message":"Hello, my Name is Molly. I will help you to find the things you want to find. I will help you. Only type what you want into the search bar, or click on the mic and tell me what's on your mind. Type \"help\" to see what you can ask me. Have fun!"},
+	"thousandtimesused":{"message":"Hello, this is Molly again. Just wanted to say, you have used me 1000 Times! Yes this is a lot. But another important thing. My developer need a lot of time to make me as good as I am. Time to give something back to him!"},
+	"support":{"message":"Support this Extension"},
+	"doyouevenknow":{"message":"Wussten Sie schon..... "},
+	
+	"headline1":{ "message": "Hey {name}! What's on your mind today?" },
+	"headline2":{ "message": "Hey {name}! What do you care about?" },
+	"nocardsfornotification":{"message":"You've selected no cards for notifications"},
+	"removesuccessfull":{"message":"This element was sucsessfully removed!"},
+	"dropcardstoremove":{"message":"Drop Cards here if you aren't interested anymore.!"},
+	"nocardstoshowincardslider":{"message":"Sie haben keine Karten ausgew&auml;hlt, an denen Sie dauerhaft interessiert sind. Sie k&ouml;nnen das tun, nachdem Sie ein Command eingegeben haben, und anschlie&szlig;end auf \"Interesse an dieser Info?\" klicken!"},
+	"alreadyonlist":{"message":"Dieser Command ist schon auf deiner Watchlist!"},
+	"putonwatchlist":{"message":"Are you interested in this command?"},
+	"youalreadygetnotif":{"message":"You already get notifications for this card"},
+	"getnotifforthis":{"message":"Do you want notifications for this card?"},
+	"commandneedspermission":{"message":"Dieser Command braucht weitere Permissions: "},
+	"cantviewwithoutpermission":{"message":"You can't view this card without this permission"},
+	
+	"menu":{"message":"menu"},
+	"support":{"message":"Support"},
+	"options":{"message":"Options"},
+	"importantcommands":{"message":"Important commands:"},
+	"spracheingabeaktiv":{"message":"Spracheingabe aktiv! Stop"},
+	
+	"notification":{"message":" Notification:"},
+	"interestingcards":{"message":"Karten, die Sie gerade interessieren"},
+	
+	"fremder":{"message":"stranger"},
+	"yourname":{"message":"What's your Name?"},
+	"startwithoutname":{"message":" Ohne Namen fortfahren (kann sp&auml;ter noch hinzugef&uuml;gt werden)"},
+	
+	"backtomolly":{"message":" Back to Molly"},
+	"sprachausgabeexplain":{"message":"Sprachausgabe (Programm liest Antworten vor)"},
+	"sprachsuche":{"message":"Sprachsuche"},
+	"alwayslisten":{"message":"Always Listen (beta) (Say \"Ok Software\" to start)"},
+	"ton":{"message":"sound"},
+	"desktopnotification":{"message":"Desktop Notification"},
+	"themes":{"message":"Themes"},
+	"standarttheme":{"message":"Standartheme"},
+	"minimaltheme":{"message":"Minimaltheme"},
+	"minimalexplain":{"message":"If you don't have the best internet/computer you can switch to this theme to make Software much faster (minimal design, minimal features (but main features will work!))"},
+	"units":{"message":"Which Units do you prefear?"},
+	"changesaresaved":{"message":"All Changes are Saved!"},
+	"resetchanges":{"message":"Reset Software to very first"},
+	
+
+	"ok":{"message":"ok"},
+	"allow":{"message":"allow"},
+	"deny":{"message":"deny"},
+	"cancel":{"message":"cancel"},
+	"helpnotifications":{"message":"To add notifications, click on a card (which have the possiblitiy of notifications) on the add notification link at the bottom!"},
+	
+	"idapps":{ "message":"apps" },
+	"descriptionapps":{ "message":"view and launch your apps." },
+	
+	"idbookmarks":{ "message":"bookmarks"},
+	"descriptionbookmarks":{ "message":"view and launch your bookmarks." },
+	
+	"idrss":{ "message":"rss" },
+	"descriptionrss":{ "message":"subscribe to a RSS feed." },
+	
+	"idlaunch":{ "message":"launch" },
+	"descriptionlaunch":{ "message":"launch a website." },
+	
+	"idcalc":{ "message":"solve" },
+	"idsynonymcalc":{ "message":"calc" },
+	"descriptionlaunch":{ "message":"Use a minimal Calculator." },
+	
+	"idmail":{ "message":"mail" },
+	"descriptionmail":{ "message":"view your mails or write a mail." },
+	
+	"idweather":{ "message":"weather" },
+	"weatheratlocation":{ "message":"Weather at your location." },
+	"descriptionweather":{ "message":"view the weather for a city." },
+	
+	"idclock":{ "message":"clock" },
+	"idtime":{ "message":"time" },
+	"descriptionclock":{ "message":"View the time for a city." },
+	
+	"idnews":{ "message":"news" },
+	"descriptionnews":{ "message":"view news." },
+	
+	"idinfo":{ "message":"info" },
+	"descriptioninfo":{ "message":"get information about app,developer and support ways." },
+	
+	"idsystem":{ "message":"system" },
+	"descriptioninfo":{ "message":"Information about your cpu and memory" },
+
+	"idmusic":{ "message":"music" },
+	"descriptionmusic":{ "message":"search music." },
+	
+	"idgame":{ "message":"game" },
+	"descriptiongame":{ "message":"search and play game." },
+	
+	"idwiki":{ "message":"wikipedia" },
+	"descriptionwiki":{ "message":"search wikipedia." },
+	
+	"idmovie":{ "message":"movie" },
+	"descriptionmovie":{ "message":"search movies." },
+	
+	"idjoke":{ "message":"joke" },
+	"descriptionjoke":{ "message":"get a random joke." },
+	
+	"idalarm":{ "message":"alarm" },
+	"descriptionalarm":{ "message":"set an alarm." },
+	
+	"idrecently":{ "message":"recently" },
+	"descriptionrecently":{ "message":"view and launch recently closed pages." },
+	
+	"idfacebook":{ "message":"facebook" },
+	"descriptionfacebook":{ "message":"see your facebook timeline." },
+	
+	"iddownloads":{ "message":"downloads" },
+	"descriptiondownloads":{ "message":"view and launch your downloads." },
+	
+	"idninegag":{ "message":"ninegag" },
+	"descriptionninegag":{ "message":"get a good post from ninegag." },
+	
+	"idsport":{ "message":"sport" },
+	"descriptionsport":{ "message":"view sport results." },
+	
+	"idblog":{ "message":"blog" },
+	"descriptionblog":{ "message":"search and subscribe your favorite blogs." },
+	
+	"idquote":{ "message":"quote" },
+	"descriptionquote":{ "message":"View a beautiful quote." },
+	
+	"idtopsites":{ "message":"topsites" },
+	"descriptiontopsites":{ "message":"view and launch your topsites." },
+	
+	"idtv":{ "message":"tv" },
+	"descriptiontv":{ "message":"whats on tv today?" },
+	
+	"idbuy":{ "message":"buy" },
+	"idshopping":{ "message":"shopping" },
+	"descriptionbuy":{ "message":"search shopping websites." },
+	
+	"idwolfram":{ "message":"wolfram" },
+	"descriptionwolfram":{ "message":"search wolfram alpha search engine." },
+	
+	"idimage":{ "message":"image" },
+	"descriptionimage":{ "message":"search images." },
+	
+	"idcall":{ "message":"call" },
+	"descriptioncall":{ "message":"call a person on skype/hangout." },
+	
+	"idnotes":{ "message":"notes" },
+	"descriptionnotes":{ "message":"view and add notes." },
+	
+	"idcalendar":{ "message":"calendar" },
+	"descriptioncalendar":{ "message":"add and view events." },
+	
+	"idhelp":{ "message":"help" },
+	"descriptioncalendar":{ "message":"Get help" },
+	
+	"idyoutube":{ "message":"youtube" },
+	"descriptionyoutube":{ "message":"search youtube." },
+	
+	"idstocks":{ "message":"stocks" },
+	"descriptionstocks":{ "message":"view stocks." },
+	
+	"idreddit":{ "message":"reddit" },
+	"descriptionreddit":{ "message":"what is going on at reddit?" },
+	
+	"idsuggest":{ "message":"suggest" },
+	"descriptionsuggest":{ "message":"suggest a feature to the developer!" },
+	
+	"idgoogle":{ "message":"google" },
+	"idsearch":{ "message":"search" },
+	"descriptiongoogle":{ "message":"search in the world wide web." }
+}
