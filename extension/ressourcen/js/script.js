@@ -6,6 +6,7 @@ input = $('#MainInput');
 function setimageup(){
 	date = new Date();
 	if (date.getDate() != localStorage['imagedate']){
+		updateuserstatus();
 		localStorage['imagedate'] = date.getDate();
 		localStorage['image']++;
 		if (localStorage['image'] > 44) localStorage['image'] = 1;
@@ -272,10 +273,15 @@ $(document).ready(function(){
 		stopspracheingabe();
 	});
 	
-	if(typeof(localStorage['version']) == 'undefined' || localStorage['version'] != chrome.app.getDetails().version){
+	if(localStorage['version'] != chrome.app.getDetails().version){
 		//Update!!! :)
 		shownachricht('<p>'+getmsg("newupdate")+'<a href="#" class="ok">'+getmsg("ok")+'</a> </p>');
 		localStorage['version'] = chrome.app.getDetails().version;
+		
+		localStorage.clear();
+		window.setTimeout(function(){
+			location.reload();
+		},10000);
 	}
 	
 	if(location.search.indexOf('?') > -1){
@@ -308,7 +314,7 @@ $(document).ready(function(){
 	$('#menuopener').hover(function(){
 		menu._openMenu();
 	});
-	$('nav').mouseleave(function(){
+	$('.gn-trigger').mouseleave(function(){
 		menu._closeMenu();
 	});
 

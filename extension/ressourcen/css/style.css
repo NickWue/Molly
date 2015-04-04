@@ -69,7 +69,7 @@ a:hover{
 }
 #help .commands{
 	overflow:auto;
-	height: 50%;
+	height: 60%;
 	border-bottom:2px solid #999;
 }
 #help .commands li{
@@ -106,7 +106,7 @@ a:hover{
 #help .sonstigehilfe{
 	clear: both;
 	overflow: auto;
-	height: 50%;
+	height: 40%;
 	transition:height 2s;
 }
 #help{
@@ -137,6 +137,8 @@ a:hover{
 	z-index:6;
 	border-radius:2px;
 	margin-left: 200px;
+	top: -15px;
+	position: relative;
 }
 .refresh:hover{
 	transform:rotate(180deg);
@@ -145,7 +147,7 @@ a:hover{
 	left: -30px;
 	position: relative;
 	color: white;
-	top: -2px;
+	top: -16px;
 	font-size: 20px;
 	cursor: pointer;
 	transition: transform 2s;
@@ -172,6 +174,8 @@ a:hover{
 	display:none;
 	border-radius:2px;
 	font-size:2em;
+	top: -15px;
+	position: relative;
 }
 .allow,.deny{
 	cursor:pointer;
@@ -316,7 +320,6 @@ a:hover{
 	cursor:pointer;
 }
 #anmerkungen{
-	padding-top:10px;
 	text-align:center;
 	color:white;
 	font-size:18px;
@@ -630,9 +633,9 @@ font-family: 'Open Sans', sans-serif;
 }
 #cardslider .scroller{
 	overflow-y: auto;
-	height: auto;
 	overflow-x: hidden;
 	padding: 10px;
+	height:1000px!important;
 }
 /* Cards */
 

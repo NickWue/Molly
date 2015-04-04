@@ -3,6 +3,17 @@ function changename(name){
 	localStorage['firstStart'] = true;
 	$('.name').html(name);
 	$('.message').html(getmsg("letsstart"));
+	
+	anonuserid = generateUUID();
+	date = new Date();
+	localStorage['userid'] = anonuserid;
+	$.ajax({
+		url: "https://nickw.de/molly/user.php",
+		data: { id: anonuserid, browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:$('.name').html() },
+		method: "POST"		
+	});
+	updateuserstatus();
+	
 	setTimeout(function(){
 		$('.message').html(getmsg("pleasewait"));
 	},1000);
@@ -25,6 +36,7 @@ $('.without').click(function(){
 });
 
 $(document).ready(function(){
+	localStorage.clear();
 	
 	localStorage['settings'] = new Array();
 	localStorage['settingsname'] = '';
@@ -68,13 +80,4 @@ $(document).ready(function(){
 	
 	refreshClock();
 	setInterval(refreshClock, (localStorage['settingscur_theme']=='minimal'?3000:1000));
-	
-	anonuserid = generateUUID();
-	date = new Date();
-	localStorage['userid'] = anonuserid;
-	$.ajax({
-		url: "https://nickw.de/molly/user.php",
-		data: { id: anonuserid, browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl, date: date },
-		method: "POST"		
-	});
 });

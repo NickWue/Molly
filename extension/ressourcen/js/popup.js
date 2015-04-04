@@ -15,5 +15,10 @@ $(document).ready(function(){
 	});
 	
 	getlanguagestrings();
+	
+	$('body').on('click', 'a', function(){
+		chrome.tabs.create({url: $(this).attr('href')});
+		return false;
+	});
 });	
 

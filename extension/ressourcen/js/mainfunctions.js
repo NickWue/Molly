@@ -146,13 +146,14 @@ function opencardslider(container){
 
 }
 function generateUUID(){
-    var d = new Date().getTime();
+	date = new Date()
+    var d = date.getTime();
     var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = (d + Math.random()*16)%16 | 0;
         d = Math.floor(d/16);
         return (c=='x' ? r : (r&0x3|0x8)).toString(16);
     });
-    return 'id'+uuid;
+    return 'id'+uuid+Date.now();
 };
 function loadcards(container){
 	applyedcards = localStorage['cards'].split(',');
@@ -640,6 +641,25 @@ function ajax(url,success){
 		},
 		error: function(data){
 			log('Ajax Error:');
+			log(data);
+		}
+	});
+}
+
+function updateuserstatus(){
+	$.ajax({
+		url: "https://nickw.de/molly/userstatus.php",
+		data: { id: localStorage['userid']},
+		method: "POST"		
+	});
+}
+
+function deleatuser(){
+	$.ajax({
+		url: "https://nickw.de/molly/deleatuser.php",
+		data: { id: localStorage['userid']},
+		method: "POST",
+		success: function(data){
 			log(data);
 		}
 	});

@@ -14,8 +14,6 @@ function ObjCommand(pId,pIcon,pStartdirectly,pRegulary,pPermission,pOrigin,pHasR
 	this.speak = function(view,string){
 		if(typeof(results) != 'undefined'){
 			if(localStorage['sprachausgabe'] == 'true' && view.attr('id') == results.attr('id')){
-				log(string);
-				log(hl);
 				chrome.tts.speak(string,{'lang': getmsg("langcode")});
 			}
 		}	
@@ -106,7 +104,7 @@ function commands(){
 	this.weather = function(){
 		this.constructor(getmsg('idweather'),'cloud',true,true,'','',true,[getmsg('stadt')]);
 		this.getweather = function(view,urlplus){			
-			ajax("http://api.openweathermap.org/data/2.5/weather?" + urlplus + "&units="+localStorage["units"]+"&lang="+hl,function(data){
+			ajax("http://api.openweathermap.org/data/2.5/weather?" + urlplus + "&units="+localStorage["units"]+"&lang="+navigator.language,function(data){
 				if (typeof(data.main) == 'undefined'){		
 						view.append( '<div style="color:red">'+data.cod+'//'+data.message);
 					}	
@@ -128,6 +126,7 @@ function commands(){
 			}	
 		}
 		this.getview = function(view,params){
+			view.html('');
 			cur_obj['weather'].getweather(view,'q='+params.join(" "));
 		}	
 	}
@@ -163,7 +162,7 @@ function commands(){
 		this.constructor(getmsg('idgoogle'),'google',false,false,'','',false,['search']);
 		this.getview = function(view,params){
 			cur_obj['google'].speak(view,getmsg("googlenow")+params.join(" "));
-			location = 'https://www.google.com/#q='+params.join(" ")+'&hl='+hl;	
+			location = 'https://www.google.com/#q='+params.join(" ")+'&hl='+navigator.language;	
 		}
 	}
 	this.recently = function(){
@@ -199,6 +198,7 @@ function commands(){
 				view.css('font-size','1em');
 				switch(params[0].trim()){
 					case 'support':
+						view.html('<h2> '+getmsg("support")+' </h2>');
 						$("<div>").load('./ressourcen/html/donate.html', function(data) {
 							  view.append(data);
 						});
@@ -252,6 +252,7 @@ function commands(){
 	}
 	this.suggest = function(){
 		this.constructor(getmsg('idsuggest'),'pencil2',true,true,'','',false,'');
+		this.synonyms = 'feedback';
 		this.getview = function(view,params){
 			cur_obj['suggest'].speak(view,getmsg("suggestacard"));
 			view.load("./ressourcen/html/suggest.html");
@@ -399,14 +400,14 @@ function commands(){
 		this.synonym = getmsg("idshopping");
 		this.getview = function(view,params){		
 			cur_obj['buy'].speak(view,getmsg("searchingfor").replace('{search}',params.join(" ")));
-			location = 'https://www.google.de/search?q='+params.join(" ")+'&tbm=shop&hl='+hl;
+			location = 'https://www.google.de/search?q='+params.join(" ")+'&tbm=shop&hl='+navigator.language;
 		}
 	}
 	this.image = function(){
 		this.constructor(getmsg('idimage'),'image',false,false,'','',false,[getmsg("suchbegriff")]);
 		this.getview = function(view,params){
 			cur_obj['image'].speak(view,getmsg("searchingfor").replace('{search}',params.join(" ")));
-			location = 'https://www.google.com/search?site=imghp&tbm=isch&hl='+hl+'&q='+params.join(" ");
+			location = 'https://www.google.com/search?site=imghp&tbm=isch&hl='+navigator.language+'&q='+params.join(" ");
 		}
 	}	
 	this.wiki = function(){
@@ -414,14 +415,13 @@ function commands(){
 		this.synonym = 'wiki';
 		this.getview = function(view,params){
 			cur_obj['wiki'].speak(view,getmsg("searchingfor").replace('{search}',params.join(" ")));
-			location = 'http://'+hl+'.wikipedia.org/wiki/'+params.join(" ");
+			location = 'http://'+navigator.language+'.wikipedia.org/wiki/'+params.join(" ");
 		}
 	}
 	this.solve = function(){
 		this.constructor(getmsg('idcalc'),'calculate',true,true,'','',false,'');
 		this.synonym = getmsg('idsynonymcalc');
 		this.getview = function(view,params){
-			//view.html('You can use all language features of javascript. Like Math.sqrt() for square root.');
 			if (params.join('').length > 2){
 				try {
 					view.html(params.join('')+'='+ eval(params.join(''))); 
@@ -463,13 +463,11 @@ function commands(){
 		this.getview = function(view){
 			ajax("https://mail.google.com/mail/feed/atom", function(XMLmediaArray){
 				$(XMLmediaArray).find("fullcount").each(function(){	
-					view.html($(this).text()).addClass('maincolor');
+					view.html($(this).text()+'Unread Email').addClass('maincolor');
 				});
 				$(XMLmediaArray).find("entry").each(function(){
 					view.append('<li><a href="'+$(this).find("link").attr("href")+'">'+$(this).find("title").text()+'</a></li>');
 				});
-			}).fail(function() {
-				view.html(getmsg("gmailerror"));
 			});	
 		}
 	}

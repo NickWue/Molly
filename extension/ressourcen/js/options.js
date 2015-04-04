@@ -25,6 +25,7 @@ $(document).ready(function(){
 });
 
 function reset(){
+	deleatuser();
 	localStorage.clear();
 	location = '../../start.html';
 }
