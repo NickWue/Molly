@@ -31,7 +31,6 @@
 	"nocardsfornotification":{"message":"Sie haben keine Karten für Benachrichtigungen ausgewählt."},
 	"removesuccessfull":{"message":"successfully removed."},
 	"dropcardstoremove":{"message":"Drop cards if you aren't interested anymore."},
-	"nocardstoshowincardslider":{"message":"Sie haben keine Karten ausgewählt, an denen Sie dauerhaft interessiert sind. Sie können das tun, nachdem Sie einen Befehl eingegeben haben, und anschließend auf \"Diese Info beobachten?\" klicken!"},
 	"nocardstoshowincardslider":{"message":"You have no information, you are interested in regulary. You can add information after you ask a question, and click on the \"I'm interested regulary\" link."},
 	"alreadyonlist":{"message":"You already are interested in this information!"},
 	"putonwatchlist":{"message":"I'm interested regulary."},
@@ -120,7 +119,7 @@
 	"descriptionapps":{ "message":"Molly shows your apps." },
 	"sprachausgabeapps":{"message":"Here are your apps!"},
 	
-	"idbookmarks":{ "message":"lesezeichen"},
+	"idbookmarks":{ "message":"bookmarks"},
 	"descriptionbookmarks":{ "message":"Molly show your bookmarks." },
 	
 	"idrss":{ "message":"rss" },
@@ -138,7 +137,7 @@
 	"idmail":{ "message":"mail" },
 	"descriptionmail":{ "message":"View your emails." },
 	
-	"idweather":{ "message":"wetter" },
+	"idweather":{ "message":"weather" },
 	"weatheratlocation":{ "message":"The weather:" },
 	"descriptionweather":{ "message":"Here is the weather at your location. Enter a city to see the weather from a city all over the world." },
 	
@@ -155,25 +154,25 @@
 	"idsystem":{ "message":"system" },
 	"descriptioninfo":{ "message":"Information about your system." },
 
-	"idmusic":{ "message":"musik" },
+	"idmusic":{ "message":"music" },
 	"descriptionmusic":{ "message":"Search for Musik." },
 	
-	"idgame":{ "message":"Spiel" },
+	"idgame":{ "message":"games" },
 	"descriptiongame":{ "message":"Search for Games." },
 	
 	"idwiki":{ "message":"wikipedia" },
 	"descriptionwiki":{ "message":"Search for wikipedia entry." },
 	
-	"idmovie":{ "message":"film" },
+	"idmovie":{ "message":"movie" },
 	"descriptionmovie":{ "message":"Search for movies." },
 	
-	"idjoke":{ "message":"witz" },
+	"idjoke":{ "message":"joke" },
 	"descriptionjoke":{ "message":"See a random funny ninegag post." },
 	
-	"idalarm":{ "message":"wecker" },
+	"idalarm":{ "message":"alarm" },
 	"descriptionalarm":{ "message":"Set an alarm." },
 	
-	"idrecently":{ "message":"verlauf" },
+	"idrecently":{ "message":"history" },
 	"descriptionrecently":{ "message":"Molly shows your history." },
 	
 	"idfacebook":{ "message":"facebook" },
@@ -191,7 +190,7 @@
 	"idblog":{ "message":"blog" },
 	"descriptionblog":{ "message":"Search for Blogs." },
 	
-	"idquote":{ "message":"zitat" },
+	"idquote":{ "message":"quote" },
 	"descriptionquote":{ "message":"View great quotes." },
 	
 	"idtopsites":{ "message":"topsites" },
@@ -207,25 +206,25 @@
 	"idwolfram":{ "message":"wolfram" },
 	"descriptionwolfram":{ "message":"" },
 	
-	"idimage":{ "message":"bilder" },
+	"idimage":{ "message":"images" },
 	"descriptionimage":{ "message":"Search for images." },
 	
-	"idcall":{ "message":"anrufen" },
+	"idcall":{ "message":"call" },
 	"descriptioncall":{ "message":"Call somebody." },
 	
-	"idnotes":{ "message":"notizen" },
+	"idnotes":{ "message":"notesn" },
 	"descriptionnotes":{ "message":"view and add notes." },
 	
-	"idcalendar":{ "message":"kalender" },
+	"idcalendar":{ "message":"calender" },
 	"descriptioncalendar":{ "message":"See the calendar." },
 	
-	"idhelp":{ "message":"hilfe" },
+	"idhelp":{ "message":"help" },
 	"descriptioncalendar":{ "message":"help." },
 	
 	"idyoutube":{ "message":"youtube" },
 	"descriptionyoutube":{ "message":"Search youtube." },
 	
-	"idstocks":{ "message":"aktien" },
+	"idstocks":{ "message":"shares" },
 	"descriptionstocks":{ "message":"Search for shares." },
 	
 	"idreddit":{ "message":"reddit" },
@@ -250,7 +249,7 @@
 	
 	"firststeps1":{"message":"This is the main input. input your questions like \"What's the weather like\", and Molly will answer. To see what you can ask Molly enter \"Help\" "},
 	"firststeps2":{"message":"Here are your most visited websites. Just move your mouse to the right side to see it."},
-	"firststeps3":{"message":"Here is the information slider. To add cards here (and to the popup), click on \"I'm interested regulary\" after input a question."},
+	"firststeps3":{"message":"Here you find the cards you are interested in. Click on \"I'm interested regulary\" after input a question, to save an information here."},
 	"firststeps4":{"message":"Gratulations, you have finsished the \"first steps\" tutorial. But there is so much more to discover. Let's go."},
 	
 	"newupdate":{"message":"A new update was installed. There are plenty new features. Just try it"},

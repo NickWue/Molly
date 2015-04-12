@@ -3,16 +3,10 @@ function changename(name){
 	localStorage['firstStart'] = true;
 	$('.name').html(name);
 	$('.message').html(getmsg("letsstart"));
-	
 	anonuserid = generateUUID();
 	date = new Date();
 	localStorage['userid'] = anonuserid;
-	$.ajax({
-		url: "https://nickw.de/molly/user.php",
-		data: { id: anonuserid, browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:$('.name').html() },
-		method: "POST"		
-	});
-	updateuserstatus();
+	updateuserstatus(date,localStorage['userid'],$('.name').html());
 	
 	setTimeout(function(){
 		$('.message').html(getmsg("pleasewait"));
@@ -58,6 +52,8 @@ $(document).ready(function(){
 	localStorage['settingsgoogledirectly'] = false;	
 	localStorage['last-searches'] = 'help';
 	localStorage["units"] = 'metric';
+	
+	localStorage['showcardslider'] = 'true';
 	
 	localStorage['starts'] = 0;
 	localStorage['getnotif'] = '';

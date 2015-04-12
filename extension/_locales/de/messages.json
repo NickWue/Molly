@@ -248,7 +248,7 @@
 	
 	"firststeps1":{"message":"Das hier ist die Haupteingabe. Schreiben Sie ihre Frage hierrein z.B. \"Wie ist das Wetter\", und Molly wird Sie ihnen beantworten. Um eine Liste von   möglichen Fragen zu sehen, geben Sie \"Hilfe\" ein."},
 	"firststeps2":{"message":"Hier sind Ihre meistbesuchten Webseiten. Bewegen Sie die Maus einfach nach links um das Menü zu sehen."},
-	"firststeps3":{"message":"Hier können Sie den Cardslider öffnen. Dort finden Sie die Informationen, an denen Sie regelmäßig interessiert sind. Um eine Karte hier und im Popup oben rechts zu finden, klicken Sie, nachdem Sie eine Frage gestellt haben auf \"Diese Info beobachten?\"."},
+	"firststeps3":{"message":"Hier finden Sie die Karten, die Sie interessieren. Klicken Sie nachdem Sie nach einer Information gesucht haben auf \"Diese Info beobachten?\" um Informationen hier hin zu speichern."},
 	"firststeps4":{"message":"Herzlichen Glückwunsch, Sie haben das \"Erste Schritte\" Tutorial fertiggestellt. Aber es gibt noch viel mehr zu entdecken. Also los gehts!"},
 	
 	"newupdate":{"message":"Eines neues Update von Molly ist erschienen, und wurde schon installiert. Es gibt viele neue Funktionen! Probieren Sie's aus!"},

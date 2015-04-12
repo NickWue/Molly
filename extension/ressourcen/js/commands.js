@@ -23,10 +23,11 @@ function commands(){
 	this.apps = function(){
 		this.constructor(getmsg('idapps'),'grid-alt',true,true,'management','',false,'');
 		this.getview = function(view,params){
+			view.html('');
 			chrome.management.getAll(function(data){
 				for (i=0;i<=data.length-1;i++){
 					if (data[i].type == 'hosted_app'){
-						view.append("<li><a href='"+data[i].appLaunchUrl+"'><img width='16' src='"+data[i].icons[0].url+"'/>"+data[i].name+"</a></li>");		
+						view.append("<li><a href='"+data[i].appLaunchUrl+"'><img width='16' src='"+data[i].icons[0].url+"'/>"+(data[i].name.length>30?data[i].name.substr(0,27)+'...':data[i].name)+"</a></li>");		
 					}	
 				}
 				cur_obj['apps'].speak(view,getmsg("sprachausgabeapps").replace('{i}',i));
@@ -45,6 +46,7 @@ function commands(){
 				initcommandclick();
 			}
 			$('#help .closehelp').click(function(){
+				input.val('');
 				cur_obj['help'].onleave();
 			});
 			$('#help .commands li').hover(function(){
@@ -110,9 +112,15 @@ function commands(){
 					}	
 					else{
 						cur_obj['weather'].weatherdata = [];
-						cur_obj['weather'].weatherdata.push([getmsg("stadt"),data.name+', '+data.sys.country],[getmsg("wetter"),data.weather[0].description],[getmsg("temp"),Math.round(data.main.temp)+'&deg;'],[getmsg("maxtemp"),Math.round(data.main.temp_max)],[getmsg("mintemp"),Math.round(data.main.temp_min)]);
-						content = new ObjResults();
-						view.append(content.returnview(cur_obj['weather'].weatherdata));
+						cur_obj['weather'].weatherdata.push([getmsg("stadt"),data.name+', '+data.sys.country],[getmsg("wetter"),data.weather[0].description],[getmsg("temperature"),Math.round(data.main.temp)+'&deg;'],[getmsg("maxtemp"),Math.round(data.main.temp_max)+'&deg;'],[getmsg("mintemp"),Math.round(data.main.temp_min)+'&deg;']);
+						content = '<table>';
+						
+						for(var t = 0; t<= cur_obj['weather'].weatherdata.length-1; t++){
+							content += '<tr><td>'+cur_obj['weather'].weatherdata[t][0]+'</td><td>'+cur_obj['weather'].weatherdata[t][1]+'</td></tr>';
+						}
+						content += '</table>';
+						
+						view.append(content);
 						cur_obj['weather'].speak(view,getmsg("weatherforcast").replace('{temp}',Math.round(data.main.temp)).replace('{city}',data.name).replace('{weather}',data.weather[0].description));
 					}	
 			});
@@ -120,7 +128,7 @@ function commands(){
 		this.notallparams = function(view){
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function(data){
-					view.html(getmsg("weatheratlocation"));
+					view.html('');
 					cur_obj['weather'].getweather(view,'lat='+data.coords.latitude+'&lon='+data.coords.longitude);
 				});
 			}	
@@ -134,6 +142,7 @@ function commands(){
 		this.constructor(getmsg('idbookmarks'),'bookmarks',true,true,'bookmarks','',false,'');
 		this.getview = function(view,params){
 			var hResults = new ObjResults();
+			view.html('');
 			chrome.bookmarks.getTree(function(list){		
 				for (a=0;a<=list[0].children.length-1;a++){
 					if (typeof(list[0].children[a].children) != 'undefined'){
@@ -242,8 +251,8 @@ function commands(){
 		this.getview = function(view,params){
 			var hresults = new ObjResults();
 			chrome.topSites.get (function(urls) {
-				for (i=0;i<=urls.length-1;i++){
-					hresults.addrows("<img src='chrome://favicon/"+urls[i].url+"'/>","<a href="+urls[i].url+" class='gn-icon'>"+(urls[i].title.length >20?urls[i].title.substring(0,20)+'...' : urls[i].title)+"</a>");
+				for (var i=0;i<=urls.length-1;i++){
+					hresults.addrows("<img src='chrome://favicon/"+urls[i].url+"'/>","<a href="+urls[i].url+" class='gn-icon'>"+(urls[i].title.length >20?urls[i].title.substr(0,20)+'...' : urls[i].title)+"</a>");
 				}
 				view.html(hresults.returnview([]));
 				cur_obj['topsites'].speak(view,getmsg("heretopsites"));
@@ -590,10 +599,11 @@ function ObjResults(){
 		}
 	}	
 	this.addrows = function(left,right){
-		this.innercontent += '<tr><td>'+left+'</td><td>'+right+'</td></tr>';
+		//this.innercontent += '<tr><td>'+left+'</td><td>'+right+'</td></tr>';
+		this.innercontent += '<li>'+left+right+'</li>';
 	}
 	this.returnview = function(rowsarray){
 		if(rowsarray.length > 0) this.init(rowsarray);
-		return '<table>'+this.innercontent+'</table>';
+		return this.innercontent;
 	}
 }

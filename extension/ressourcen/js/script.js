@@ -6,7 +6,7 @@ input = $('#MainInput');
 function setimageup(){
 	date = new Date();
 	if (date.getDate() != localStorage['imagedate']){
-		updateuserstatus();
+		updateuserstatus(date,localStorage['userid'],$('.name').html());
 		localStorage['imagedate'] = date.getDate();
 		localStorage['image']++;
 		if (localStorage['image'] > 44) localStorage['image'] = 1;
@@ -37,6 +37,7 @@ function styles(){
 		break;
 	}
 	if(localStorage['settingssprachsuche'] == 'false') $('#mic').hide();
+	$('#cardslider').css('top',$('#MainContent').offset().top+$('#MainContent').height()+50)
 }
 
 $(window).resize(function(){
@@ -45,7 +46,6 @@ $(window).resize(function(){
 
 function initkeypress(){
 	$(document).on('keypress', function(e) {
-	log(e.keyCode);
 	if(!request_started){
 		//$('#overlay').show();
 		if(e.keyCode == 13) {
@@ -68,7 +68,7 @@ function initkeypress(){
 			if(input.length > 0 || (input.length == 1 && e.keyCode == 8)){
 				requestgo = true;
 				$('#MainContent').removeClass('down').addClass('top');
-				
+				$('#cardslider').addClass('inputactive');
 
 				if(!request_started){
 					matching_commands = []; 
@@ -148,6 +148,7 @@ function initkeypress(){
 				requestgo = false;
 				results.html('').removeClass('show');
 				$('#MainContent').removeClass('top').addClass('down');
+				$('#cardslider').removeClass('inputactive');
 				//$('#overlay').hide();
 				initcommandclick();
 			}
@@ -158,8 +159,18 @@ function initkeypress(){
 	if (e.keyCode==8){
 		results.removeClass('show');
 		window.setTimeout(function(){
-			input.trigger('keypress');
-		},5);	
+			log(input.val().length);
+			if(input.val().length < 1){
+				$('#matchingCommands').html('<a class="command" command="'+getmsg("idhelp")+'">'+getmsg("typehelpforhelp")+'</a>');
+				requestgo = false;
+				results.html('').removeClass('show');
+				$('#MainContent').removeClass('top').addClass('down');
+				$('#cardslider').removeClass('inputactive');
+				$('#vorschlaege').hide();
+				initcommandclick();
+				$('#show_card_regulary,#show_notif').html('');
+			}
+		},300);	
 	}	
 	if (e.keyCode==38){
 		input.val(localStorage['last-searches'].split(',')[localStorage['last-searches'].split(',').length-searchwhich++]);
@@ -257,7 +268,29 @@ $(document).ready(function(){
 	newRecognition.lang = hl;
 
 	$('.cardslideropener').click(function(){
-		opencardslider($('#cardslider .scroller'));
+		opencardslider($('#cardslider'));
+	});
+	opencardslider($('#cardslider'));
+	if(localStorage['showcardslider'] == 'false'){
+		$('#cardslider').addClass('inputactive');
+		$('#showcardslider').addClass('icon-eye-blocked').removeClass('icon-eye');
+	}
+	else{
+		$('#cardslider').removeClass('inputactive');	
+		$('#showcardslider').addClass('icon-eye').removeClass('icon-eye-blocked');
+	}
+	if($('#cardslider').hasClass('nocards')) $('#showcardslider').hide();
+	
+	$('#showcardslider').click(function(){
+		if($('#showcardslider').hasClass('icon-eye')){
+			$('#cardslider').addClass('inputactive');
+			localStorage['showcardslider'] = 'false';
+		}
+		else{
+			$('#cardslider').removeClass('inputactive');
+			localStorage['showcardslider'] = 'true';			
+		}
+		$('#showcardslider').toggleClass('icon-eye').toggleClass('icon-eye-blocked');	
 	});
 	
 	start = false;	
@@ -277,11 +310,6 @@ $(document).ready(function(){
 		//Update!!! :)
 		shownachricht('<p>'+getmsg("newupdate")+'<a href="#" class="ok">'+getmsg("ok")+'</a> </p>');
 		localStorage['version'] = chrome.app.getDetails().version;
-		
-		localStorage.clear();
-		window.setTimeout(function(){
-			location.reload();
-		},10000);
 	}
 	
 	if(location.search.indexOf('?') > -1){
@@ -291,12 +319,12 @@ $(document).ready(function(){
 					startspracheingabe();
 				break;
 				case '2':
-					opencardslider($('#cardslider .scroller'));
+					opencardslider($('#cardslider'));
 				break;
 				case '3': break;
 				default: //Karte soll geöffnet werden
 					id = location.search.substr(location.search.indexOf('=')+1,location.search.length);
-					input.val(id);
+					input.val(id+' ');
 					input.trigger('keypress');
 				break;
 			}

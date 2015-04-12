@@ -1,4 +1,4 @@
-
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400);
 body {
   margin:0;
   -webkit-background-size: cover;
@@ -6,6 +6,7 @@ body {
   transition:width 2s;
   width:100%;
 }
+*::-webkit-scrollbar { width: 0 !important }
 body.showhelp{
 	width:calc(100vw - 400px);
 }
@@ -152,6 +153,7 @@ a:hover{
 	cursor: pointer;
 	transition: transform 2s;
 	display:none;
+	z-index: 5000;
 }
 #vorschlaege li{
 	list-style:none;
@@ -596,10 +598,17 @@ font-family: 'Open Sans', sans-serif;
 #cardslider.toggle .toggleregulary{
 	display:block;
 }
-
-#cardslider.toggle{
-	height:calc(100vh - 459px);
+#showcardslider{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	font-size: 2em;
+	color: white;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	cursor: pointer;
 }
+
 .cardslideropener.toggle{
 	bottom:calc(100vh - 455px);
 }
@@ -614,22 +623,28 @@ font-family: 'Open Sans', sans-serif;
 	transform: rotate(90deg);
 	z-index:1000000;
 }
-#cardslider{
-	z-index:500;
-	width:100%;
-	transition: height 2s;
-	height:0px;
-	position:fixed;
-	left:0px;
-	bottom:0px;
-	background:rgba(255,255,255,0.8);
+
+#cardslider.inputactive{
+	top:100%!important;
 }
-#cardslider .scroller.nocards{
-	font-size: 2em;
-	text-align: center;
-	width: 500px;
+#cardslider{
+	z-index: 500;
+	width: 1060px;
+	position: absolute;
 	margin: 0 auto;
-	padding-top: 50px;
+	background:transparent;
+	left: calc(50vw - 510px);
+	transition:top 2s;
+}
+#cardslider.nocards{
+	margin: 0 auto;
+	position: absolute;
+	top: 100%!important;
+	color: white;
+	margin-top: -40px;
+	max-width:800px;
+	text-align:center;
+	left: calc(50vw - 400px);
 }
 #cardslider .scroller{
 	overflow-y: auto;
@@ -656,31 +671,32 @@ li.card{
 	border-bottom: 1px solid #999;
 	margin-bottom: 5px;
 	padding-bottom: 3px;
+	font-weight: 500;
+}
+.card li{
+	list-style: none;
+  border-bottom: 1px solid #c6d0da;
+  padding: 3 0 3 0;
 }
 
 .card{
 	font-size:1.5em;
 	width:325px;
-	min-height:80px;
-	max-height:350px;
+	max-height:400px;
 	float:left;
-	background:rgba(255,255,255,0.7);
+	background:rgba(255,255,255,0.9);
 	padding:10;
 	margin:10 12.5 0 0;
 	display:inline;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	z-index:500000000000;
+	z-index:500000;
 	overflow:auto;
 	position:relative;
-	border-radius:3px;
-	user-select:none;
+	border-radius:4px;
 	margin-right: 15px!important;
-	border: 1px solid #333;
-}
-.card .tr{
-	border-bottom: 2px solid #e3e3e3;
-	padding-bottom: 4px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 100;
 }
 
 

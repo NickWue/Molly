@@ -129,13 +129,13 @@ function startspracheingabe(){
 }
 function opencardslider(container){
 	if(!$('#cardslider').hasClass('toggle')){
-		$('#cardslider .scroller').html('');
-		loadcards($('#cardslider .scroller'));
+		$('#cardslider').html('');
+		loadcards($('#cardslider'));
 	}
-	if(!$('#MainInput').val().length > 0){
+	/*if(!$('#MainInput').val().length > 0){
 		$('#MainContent').toggleClass('top');
 		$('#MainContent').toggleClass('down');
-	}	
+	}	*/
 	
 	$('#cardslider').toggleClass('toggle');
 	
@@ -143,6 +143,8 @@ function opencardslider(container){
 	
 	if($('.cardslideropener').hasClass('icon-uniE617')) $('.cardslideropener').removeClass('icon-uniE617').addClass('icon-arrow-left');
 	else $('.cardslideropener').removeClass('icon-arrow-left').addClass('icon-uniE617');
+	
+	$('#cardslider').css('top',$('#MainContent').offset().top+$('#MainContent').height()+50)
 
 }
 function generateUUID(){
@@ -156,6 +158,7 @@ function generateUUID(){
     return 'id'+uuid+Date.now();
 };
 function loadcards(container){
+	container.html();
 	applyedcards = localStorage['cards'].split(',');
 	cardscount2 = 0;
 	for (cardscount = 0; cardscount <= applyedcards.length-1; cardscount++ ){
@@ -258,8 +261,6 @@ function initregulary(view,cur_view,eingabe){
 	if(view.attr('id') == results.attr('id') && cur_view.regulary){
 		$('#matchingCommands').html('');
 		$('#show_card_regulary').show().attr('command',cur_view.id+' '+eingabe.join(" "));
-		log(cur_view.id+' '+eingabe.join(" "));
-		log(localStorage['cards'].indexOf(cur_view.id+' '+eingabe.join(" ")));
 		if(localStorage['cards'].indexOf((cur_view.id+' '+eingabe.join(" ")).trim()) == -1) $('#show_card_regulary').html(getmsg("putonwatchlist"));
 		else $('#show_card_regulary').html(getmsg("alreadyonlist"));
 		
@@ -270,14 +271,17 @@ function initregulary(view,cur_view,eingabe){
 				else alert(getmsg("alreadyonlist"));
 				onetime = true;
 				$('#show_card_regulary').html('Added!');
-				$('#cardslider .scroller').removeClass('nocards');
+				$('#cardslider').removeClass('nocards');
+				$('#cardslider').html('');
+				$('#showcardslider').show();
+				loadcards($('#cardslider'));
 			}	
 		});	
 		if(cur_view.hasrefresh){
 			$('.refresh').show();
 			$('.refresh').click(function(cur_view){
 				results.html('');
-				$('input').trigger('keypress');
+				input.trigger('keypress');
 			});
 		}
 	}
@@ -595,8 +599,8 @@ firststeps = function(){
 	}
 	this.fourth = function(){
 		menu._closeMenu();
-		this.obj = $('.cardslideropener');
-		this.pos = [$('.cardslideropener').offset().left-200,$('.cardslideropener').offset().top-150];
+		this.obj = $('#cardslider');
+		this.pos = [$(window).width()/2-200,$('#cardslider').offset().top-180];
 		this.width = 400;
 		this.content = getmsg("firststeps3");
 	}
@@ -624,7 +628,6 @@ function ajax(url,success){
 		xhr: function(){
 			var xhr = new window.XMLHttpRequest();
 			xhr.addEventListener("progress", function(evt){
-				log(evt);
 				if (evt.lengthComputable) {
 					var percentComplete = evt.loaded / evt.total*100+'%';
 					$('#loading').animate({
@@ -641,25 +644,27 @@ function ajax(url,success){
 		},
 		error: function(data){
 			log('Ajax Error:');
-			log(data);
 		}
 	});
 }
 
-function updateuserstatus(){
+function updateuserstatus(date,user,name){
 	$.ajax({
-		url: "https://nickw.de/molly/userstatus.php",
-		data: { id: localStorage['userid']},
-		method: "POST"		
+		url: "http://nickw.de/molly/user.php",
+		data: { id: user,data: date, browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:name },
+		method: "POST",
+		success(data){
+			log(data);
+		}		
 	});
 }
 
 function deleatuser(){
 	$.ajax({
-		url: "https://nickw.de/molly/deleatuser.php",
+		url: "http://nickw.de/molly/deleatuser.php",
 		data: { id: localStorage['userid']},
 		method: "POST",
-		success: function(data){
+		success(data){
 			log(data);
 		}
 	});
