@@ -101,6 +101,7 @@
 	"typetoadd":{"message":"tippe \"add\", um eine Notiz hinzuzufügen!"},
 	"enteryournote":{"message":"schreiben Sie nun ihre Notiz."},
 	"addedtonotes":{"message":"{note} zu ihren Notizen hinzufgfügt."},
+	"added":{"message":"Erfolgreich hinzugefügt. (Siehe Unten)!"},
 	"alarmringin":{"message":"Alarm klingelt in {min}min"},
 	"keinalarm":{"message":"Noch keinen Alarm hinzugefügt. \"add\" und anschließend die Minuten in denen er klingeln soll eingeben um das zu tun"},
 	"enteratime":{"message":"Geben Sie nun die Zeit ein, nach der der Alarm klingeln soll."},

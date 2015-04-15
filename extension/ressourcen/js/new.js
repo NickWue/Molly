@@ -6,7 +6,7 @@ function changename(name){
 	anonuserid = generateUUID();
 	date = new Date();
 	localStorage['userid'] = anonuserid;
-	updateuserstatus(date,localStorage['userid'],$('.name').html());
+	updateuserstatus();
 	
 	setTimeout(function(){
 		$('.message').html(getmsg("pleasewait"));

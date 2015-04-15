@@ -270,7 +270,7 @@ function initregulary(view,cur_view,eingabe){
 				if(localStorage['cards'].indexOf($(this).attr('command')) == -1) localStorage['cards'] += $(this).attr('command').trim()+',';
 				else alert(getmsg("alreadyonlist"));
 				onetime = true;
-				$('#show_card_regulary').html('Added!');
+				$('#show_card_regulary').html(getmsg("added"));
 				$('#cardslider').removeClass('nocards');
 				$('#cardslider').html('');
 				$('#showcardslider').show();
@@ -648,14 +648,11 @@ function ajax(url,success){
 	});
 }
 
-function updateuserstatus(date,user,name){
+function updateuserstatus(){
 	$.ajax({
 		url: "http://nickw.de/molly/user.php",
-		data: { id: user,data: date, browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:name },
-		method: "POST",
-		success(data){
-			log(data);
-		}		
+		data: { id: localStorage['userid'],browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:localStorage['settingsname']},
+		method: "POST"
 	});
 }
 
@@ -663,10 +660,7 @@ function deleatuser(){
 	$.ajax({
 		url: "http://nickw.de/molly/deleatuser.php",
 		data: { id: localStorage['userid']},
-		method: "POST",
-		success(data){
-			log(data);
-		}
+		method: "POST"
 	});
 }
 

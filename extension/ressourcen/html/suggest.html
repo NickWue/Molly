@@ -12,6 +12,13 @@
 
 <script>
 $('#suggest .send').click(function(){
-	if ($('.form_name').val().length > 0) window.location = "https://nickw.de/myTab/suggest.php?name="+$('.form_name').val()+"&email="+$('.form_email').val()+"&more="+$('.form_more').val();
+	$.ajax({
+		url: "http://nickw.de/molly/suggest.php",
+		data: { id: localStorage['userid'],idea:$('.form_name').val(),email:$('.form_email').val(),more:$('.form_more').val()},
+		method: "POST",
+		success: function(){
+			results.html('thank you!');
+		}
+	});
 });
 </script>

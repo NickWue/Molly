@@ -100,6 +100,7 @@
 	"nonotes":{"message":"You doesn't have notes!"},
 	"enteryournote":{"message":"enter your note."},
 	"addedtonotes":{"message":"\"{note}\" was added to your notes."},
+	"added":{"message":"Successfully added (watch out at the bottom)!"},
 	"alarmringin":{"message":"alarm will ring in {min}min"},
 	"keinalarm":{"message":"You have no alarms. Add one with the input field."},
 	"enteratime":{"message":"Enter the minutes after the alarm should ring."},

@@ -6,7 +6,7 @@ input = $('#MainInput');
 function setimageup(){
 	date = new Date();
 	if (date.getDate() != localStorage['imagedate']){
-		updateuserstatus(date,localStorage['userid'],$('.name').html());
+		updateuserstatus();
 		localStorage['imagedate'] = date.getDate();
 		localStorage['image']++;
 		if (localStorage['image'] > 44) localStorage['image'] = 1;
@@ -57,7 +57,7 @@ function initkeypress(){
 			}
 		}
 		oneisfocues = false;
-		$('input').each(function(){
+		$('input,textarea').each(function(){
 			if($(this).is(':focus')) oneisfocues = true
 		});
 		if(!oneisfocues) input.focus();
@@ -212,7 +212,8 @@ function shownachricht(message){
 	initcommandclick();
 }
 
-$(document).ready(function(){	
+
+$(document).ready(function(){		
 	
 	/* Start funcs*/
 	initvars();
@@ -345,7 +346,6 @@ $(document).ready(function(){
 	$('.gn-trigger').mouseleave(function(){
 		menu._closeMenu();
 	});
-
 });
 
 function toggleregulary(obj){

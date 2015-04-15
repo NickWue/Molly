@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Molly - language Assistant (New Tab)",
 	"short_name": "Molly",
-	"version": "1.0.2",
+	"version": "1.0.4",
 	
 	"default_locale": "en",
 	"description": "Molly offers several features like weather,rss feeds, calculator and more to enhance the original New Tab. Molly knows the answer.",
