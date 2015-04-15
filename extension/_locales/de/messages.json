@@ -17,7 +17,7 @@
 	"matching_commands":{"message":"Diese Befehle passen: "},
 	"nocommands":{"message":"Keine Befehle gefunden."},
 	"loading":{ "message" : "Laden"},
-	"needed_params":{ "message":"Sie müssen diese Parameter eingeben:: "},
+	"needed_params":{ "message":"Sie müssen diese Parameter eingeben:"},
 	"typehelpforhelp":{"message":"\"Hilfe\" eingeben, wenn Sie nicht weiter wissen."},
 	"welcome":{"message":"Hallo, mein Name ist Molly. Ich werde Ihnen helfen, die Dinge zu finden, die Sie interessieren. Fragen Sie mich einfach. Ich bin für Sie da."},
 	"thousandtimesused":{"message":"Hallo, hier bin ich nochmal. Sie haben mich nun 1000 Mal benutzt. Zeit ein Wenig in mich zu investieren:"},
