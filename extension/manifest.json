@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Molly - language Assistant (New Tab)",
 	"short_name": "Molly",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	
 	"default_locale": "en",
 	"description": "Molly offers several features like weather,rss feeds, calculator and more to enhance the original New Tab. Molly knows the answer.",
@@ -18,7 +18,7 @@
 	
 	"content_security_policy":"script-src 'self' 'unsafe-eval' https://nickw.de; object-src",
 	"browser_action": {
-		"default_title": "Molly Assisant",      
+		"default_title": "Molly Assistant",      
 		"default_popup": "ressourcen/html/popup.html"      
 	},
 	"icons": { "128": "ressourcen/icon.png" },

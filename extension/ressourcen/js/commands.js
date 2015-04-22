@@ -7,9 +7,10 @@ function ObjCommand(pId,pIcon,pStartdirectly,pRegulary,pPermission,pOrigin,pHasR
 	this.origin = pOrigin;
 	this.hasrefresh = pHasRefresh;
 	this.params = pParams;
-	this.initview = function(view,params){		
+	this.initview = function(view,params){
+		view.html('loading');
 		localStorage['last-searches'] += ','+this.id+' '+params.join(' ');
-		this.getview(view,params);
+		this.getview(view,params);	
 	}
 	this.speak = function(view,string){
 		if(typeof(results) != 'undefined'){
@@ -92,10 +93,11 @@ function commands(){
 					this.speak(view,getmsg("nocityfound"));
 				}
 				else{
-					ajax("https://maps.googleapis.com/maps/api/timezone/json?location="+data.results[0].geometry.location.lat+","+data.results[0].geometry.location.lng+"&timestamp=1331161200&sensor=false",function(data2){
+					now = new Date();
+					ajax("https://maps.googleapis.com/maps/api/timezone/json?location="+data.results[0].geometry.location.lat+","+data.results[0].geometry.location.lng+"&timestamp=1331161200",function(data2){
 						log(data2);
-						now = new Date();
-						time = (now.getUTCHours()+data2.rawOffset/60/60)+":"+now.getUTCMinutes();
+						hours = now.getUTCHours()+data2.rawOffset/60/60;
+						time = (hours > 24? hours-24:hours)+":"+now.getUTCMinutes();
 						view.html(getmsg("clockausgabe").replace('{time}',time).replace('{city}',params.join(" ")));
 						cur_obj['clock'].speak(view,view.html());
 					});	
@@ -104,13 +106,14 @@ function commands(){
 		}
 	}
 	this.weather = function(){
-		this.constructor(getmsg('idweather'),'cloud',true,true,'','',true,[getmsg('stadt')]);
+		this.constructor(getmsg('idweather'),'cloud',true,true,'','http://api.openweathermap.org/data/2.5/*',true,[getmsg('stadt')]);
 		this.getweather = function(view,urlplus){			
 			ajax("http://api.openweathermap.org/data/2.5/weather?" + urlplus + "&units="+localStorage["units"]+"&lang="+navigator.language,function(data){
 				if (typeof(data.main) == 'undefined'){		
 						view.append( '<div style="color:red">'+data.cod+'//'+data.message);
 					}	
 					else{
+						view.html('');
 						cur_obj['weather'].weatherdata = [];
 						cur_obj['weather'].weatherdata.push([getmsg("stadt"),data.name+', '+data.sys.country],[getmsg("wetter"),data.weather[0].description],[getmsg("temperature"),Math.round(data.main.temp)+'&deg;'],[getmsg("maxtemp"),Math.round(data.main.temp_max)+'&deg;'],[getmsg("mintemp"),Math.round(data.main.temp_min)+'&deg;']);
 						content = '<table>';
@@ -126,6 +129,7 @@ function commands(){
 			});
 		}
 		this.notallparams = function(view){
+			
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(function(data){
 					view.html('');
@@ -230,16 +234,19 @@ function commands(){
 	this.system = function(){
 		this.constructor(getmsg('idsystem'),'files-empty',true,true,'system.cpu','',true,'');
 		this.getview = function(view,params){
-			auslastung = 0;
-			usage = 0;
-			chrome.system.cpu.getInfo(function(data){
-				for(t=0;t<=data.processors.length-1;t++){
-					usage = data.processors[t].usage;
-					auslastung += usage.total / usage.idle;
-				}
-				view.html(getmsg("cpuuseisat").replace('{data}',(100-Math.round(auslastung/(t+1)*100))));
-				cur_obj['system'].speak(view,getmsg("cpuuseisat").replace('{data}',(100-Math.round(auslastung/(t+1)*100))));
-			});
+			window.setInterval(function(){
+				auslastung = 0;
+				usage = 0;
+				chrome.system.cpu.getInfo(function(data){
+					for(t=0;t<=data.processors.length-1;t++){
+						usage = data.processors[t].usage;
+						auslastung += usage.total / (usage.kernel+usage.user);
+					}
+					view.html(getmsg("cpuuseisat").replace('{data}',(Math.round(auslastung/(t+1)))));
+					//cur_obj['system'].speak(view,getmsg("cpuuseisat").replace('{data}',(100-Math.round(auslastung/(t+1)*100))));
+				});
+			},1000);
+			
 			/*chrome.system.memory.getInfo(function(data){
 				view.append('<br/>'+getmsg("memoryuseisat").replace('{data}',(data.availableCapacity/data.capacity*100)));
 				cur_obj['system'].speak(view,getmsg("memoryuseisat").replace('{data}',(data.availableCapacity/data.capacity*100)));
@@ -382,7 +389,7 @@ function commands(){
 		}
 	}	
 	this.joke = function(){
-		this.constructor(getmsg('idjoke'),'grin2',true,true,'','',true,'');
+		this.constructor(getmsg('idjoke'),'grin2',true,true,'','http://infinigag.eu01.aws.af.cm/hot/0',true,'');
 		this.synonyms = "9gag";
 		this.getview = function(view,params){
 			view.html('');

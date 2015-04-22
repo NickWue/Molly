@@ -18,6 +18,7 @@
 	"nocommands":{"message":"There are no matching results."},
 	"loading":{ "message" : "Loading"},
 	"needed_params":{ "message":"Please insert the relevant parameters: "},
+	"KeineParameter":{ "message":"no parameters expected. "},
 	"typehelpforhelp":{"message":"Please type \"Help\" in case you need my assistance."},
 	"welcome":{"message":"Hey my name is Molly. I am going to help you to find information in which you might be interested in. Just ask me."},
 	"thousandtimesused":{"message":"Hey it's me again. You already used me a thousand times. Don't you think it's time to give a little donation?:"},
@@ -28,6 +29,7 @@
 	"headline1":{ "message": "Hi {name}! What are you interested in?" },
 	"headline2":{ "message": "Hey {name}! Is there anything I can help you with?" },
 	
+	"nosearchresults":{"message":"No search results."},
 	"nocardsfornotification":{"message":"Sie haben keine Karten für Benachrichtigungen ausgewählt."},
 	"removesuccessfull":{"message":"successfully removed."},
 	"dropcardstoremove":{"message":"Drop cards if you aren't interested anymore."},

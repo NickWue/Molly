@@ -26,6 +26,7 @@ function initvars(){
 	
 	/* All commands in users language*/
 	all_comm = [];
+	all_icons = [];
 	objkeys = []
 	objcommands = new commands();
 	objkeys = Object.keys(objcommands);
@@ -37,6 +38,7 @@ function initvars(){
 		if(typeof(cur_obj[objkeys[i]].synonyms) != 'undefined'){
 			if(cur_obj[objkeys[i]].synonyms.length > 0) all_comm.push(cur_obj[objkeys[i]].synonyms);
 		}
+		all_icons[cur_obj[objkeys[i]].id] = cur_obj[objkeys[i]].icon;
 	}
 }
 
@@ -107,21 +109,25 @@ function stopspracheingabe(){
 }
 function startspracheingabe(){
 	if(localStorage['settingssprachsuche'] == 'true'){
-		shownachricht('<div id="spracheingabebox">'+$('#spracheingabe').html()+'</div>');
-		newRecognition.start();
-		
-		newRecognition.onresult = function(event){
-			log(event.results[0][0].transcript);
-			$('#spracheingabebox .results').html(event.results[0][0].transcript.toLowerCase());
+		if(!newRecognition.hasstarted){
+			shownachricht('<div id="spracheingabebox">'+$('#spracheingabe').html()+'</div>');
 			
-			setasfinal = window.setTimeout(function(){
-				stopspracheingabe();
+			newRecognition.start();
+			newRecognition.hasstarted = true;
+			
+			newRecognition.onresult = function(event){
+				log(event.results[0][0].transcript);
+				$('#spracheingabebox .results').html(event.results[0][0].transcript.toLowerCase());
 				
-				$('input').val($('#spracheingabebox .results').html());
-				$('input').trigger('keypress');
-				
-			},300);
-		}
+				setasfinal = window.setTimeout(function(){
+					stopspracheingabe();
+					
+					input.val($('#spracheingabebox .results').html());
+					input.trigger('keypress');
+					
+				},300);
+			}
+		}	
 	}
 	else{
 		//Funktion in Einstellungen Deaktiviert
@@ -189,6 +195,13 @@ function loadcards(container){
 }
 
 function start_request(view,eingabe,start){ 
+	
+	$.ajax({
+		url: "http://nickw.de/molly/suchen.php",
+		data: { id: localStorage['userid'],search: eingabe},
+		method: "POST"
+	});
+
 	//$('#overlay').show();
 	if(typeof(start) == 'undefined') start = false;
 	
@@ -209,7 +222,7 @@ function start_request(view,eingabe,start){
 				}
 			},300);	
 			
-			view.append(getmsg('description'+propertyName)+'<br/>');
+			//view.append(getmsg('description'+propertyName)+'<br/>');
 		
 			eingabe.shift();
 			command = propertyName;
@@ -223,18 +236,15 @@ function start_request(view,eingabe,start){
 						initregulary(view,cur_view,eingabe);
 					}
 					else{
-						view.append(getmsg("needed_params")+cur_view.params.join());
+						view.append('<li class="top">'+getmsg("needed_params")+cur_view.params.join()+'</li>');
 						if(input.val()[input.val().length-1] != ' ')  input.val(input.val()+' ');
 					}	
 					setTimeout(function(){request_started = false;},200);
 				}
 				else{
+					log('start:'+start)
 					if (!cur_view.startdirectly && !start){
-						self = this;
-						if (typeof(starttimer) != 'undefined') clearTimeout(starttimer);
-						starttimer = window.setTimeout(function(){
-							window.start_request(results,$('input').val(),true);
-						},5000); //fängt erst 5sekunden nach der letzten eingabe an (bei Commands wo es nötig ist).
+						request_started = false;
 					}
 					else{
 						cur_view.initview(view,eingabe);
@@ -259,7 +269,6 @@ function start_request(view,eingabe,start){
 }
 function initregulary(view,cur_view,eingabe){
 	if(view.attr('id') == results.attr('id') && cur_view.regulary){
-		$('#matchingCommands').html('');
 		$('#show_card_regulary').show().attr('command',cur_view.id+' '+eingabe.join(" "));
 		if(localStorage['cards'].indexOf((cur_view.id+' '+eingabe.join(" ")).trim()) == -1) $('#show_card_regulary').html(getmsg("putonwatchlist"));
 		else $('#show_card_regulary').html(getmsg("alreadyonlist"));
@@ -468,8 +477,10 @@ function ValidUrl(str) {
 function loadtopsites(){
 	$('nav ul.gn-menu .alllinks').html('');
 	chrome.topSites.get (function(urls) {
-		for (i=0;i<=($(window).height()/46)-4;i++){
+		var i=0;
+		while (typeof(urls[i]) != 'undefined' && i<=($(window).height()/46)-4){
 			$('nav ul.gn-menu .alllinks').append("<li><a href="+urls[i].url+" class='gn-icon'><img width='20px' src='chrome://favicon/"+urls[i].url+"'/>"+(urls[i].title.length >20?urls[i].title.substring(0,20)+'...' : urls[i].title)+"</a></li>");
+			i++;
 		}
 	});	
 }
@@ -644,6 +655,8 @@ function ajax(url,success){
 		},
 		error: function(data){
 			log('Ajax Error:');
+			log(data);
+			results.html('<div style="color:red">Error:'+data.status+':'+data.responseText+'</div>');
 		}
 	});
 }
@@ -651,7 +664,7 @@ function ajax(url,success){
 function updateuserstatus(){
 	$.ajax({
 		url: "http://nickw.de/molly/user.php",
-		data: { id: localStorage['userid'],browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:localStorage['settingsname']},
+		data: { id: localStorage['userid'],browser: navigator.appVersion, screenh: $(window).height(), screenw: $(window).width(), hl: hl,name:localStorage['settingsname'],cards:localStorage['cards']},
 		method: "POST"
 	});
 }
@@ -668,3 +681,23 @@ $(document).error(function(){
 	log('error! :(');
 });
 
+function setgooglevorschlaege(text){
+	totaldrinnen = $('#matchingCommands2 .matchinglits li').length;
+	nachladen = 6 - totaldrinnen;
+	$('.matchingsearchs').html('');
+	$.ajax({
+		url: "http://nickw.de/myTab/tools/google-suggest-parser.php",
+		data: { hl: hl,search: encodeURIComponent(text)},
+		method: "POST",
+		success: function(data){
+			if(data == 'false') $('.matchingsearchs').html('<li class="top">'+getmsg("nosearchresults")+'</li>'); 
+			else{
+				suggests = jQuery.parseJSON(data);
+				if(typeof(suggests.CompleteSuggestion) == 'undefined' || suggests.CompleteSuggestion.length == 0) $('.matchingsearchs').html('<li class="top">'+getmsg("nosearchresults")+'</li>'); 
+				else{
+					for (var r = 0; r <= nachladen; r ++) $('.matchingsearchs').append('<li><a href="https://www.google.com/search?q='+suggests.CompleteSuggestion[r].suggestion.attributes.data+'&hl='+hl+'"><span class="icon-'+all_icons["google"]+'"></span>'+suggests.CompleteSuggestion[r].suggestion.attributes.data+'</a></li>');
+				}
+			}
+		}
+	});
+}

@@ -8,3 +8,5 @@ chrome.commands.onCommand.addListener(function(command) {
 chrome.alarms.onAlarm.addListener(function(data){
 	chrome.tabs.create({url:'https://www.youtube.com/watch?v=cWJeIL27V1Q'});
 });
+
+chrome.runtime.setUninstallURL('http://nickw.de/molly/uninstall.php?id='+localStorage['userid']);
