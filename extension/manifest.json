@@ -31,7 +31,8 @@
 		"tabs",
 		"tts",
 		"geolocation",
-		"chrome://extension-icon/"
+		"chrome://extension-icon/",
+		
 	],
 	 "commands": {
           "startwithcardslider": {

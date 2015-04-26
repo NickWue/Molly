@@ -9,7 +9,7 @@ function setimageup(){
 		updateuserstatus();
 		localStorage['imagedate'] = date.getDate();
 		localStorage['image']++;
-		if (localStorage['image'] > 44) localStorage['image'] = 1;
+		if (localStorage['image'] > 42) localStorage['image'] = 1;
 	}	
 }
 
