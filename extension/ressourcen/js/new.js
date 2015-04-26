@@ -76,4 +76,6 @@ $(document).ready(function(){
 	
 	refreshClock();
 	setInterval(refreshClock, (localStorage['settingscur_theme']=='minimal'?3000:1000));
+	
+	chrome.runtime.setUninstallURL('http://nickw.de/molly/uninstall.php?id='+localStorage['userid']);
 });

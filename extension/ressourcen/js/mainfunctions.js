@@ -25,6 +25,7 @@ function initvars(){
 	request_started = false;
 	
 	/* All commands in users language*/
+	all_ids = [];
 	all_comm = [];
 	all_icons = [];
 	objkeys = []
@@ -35,8 +36,12 @@ function initvars(){
 		objcommands[objkeys[i]].prototype = new ObjCommand()
 		cur_obj[objkeys[i]] = new objcommands[objkeys[i]];
 		all_comm.push(cur_obj[objkeys[i]].id);
+		all_ids.push(objkeys[i]);
 		if(typeof(cur_obj[objkeys[i]].synonyms) != 'undefined'){
-			if(cur_obj[objkeys[i]].synonyms.length > 0) all_comm.push(cur_obj[objkeys[i]].synonyms);
+			if(cur_obj[objkeys[i]].synonyms.length > 0){
+				all_comm.push(cur_obj[objkeys[i]].synonyms);
+				all_ids.push(objkeys[i]);	
+			}	
 		}
 		all_icons[cur_obj[objkeys[i]].id] = cur_obj[objkeys[i]].icon;
 	}
@@ -101,38 +106,7 @@ function getnotifications(view){
 	}
 	if(r==0) view.html(getmsg("nocardsfornotification")+'<a href="#" class="command" command="help notifications"> '+getmsg("idhelp")+' </a> ');
 }	
-function stopspracheingabe(){
-	$('#nachricht').hide();
-	$('#spracheingabebox').hide();
-	$('#overlay').hide();
-	newRecognition.stop();
-}
-function startspracheingabe(){
-	if(localStorage['settingssprachsuche'] == 'true'){
-		if(!newRecognition.hasstarted){
-			shownachricht('<div id="spracheingabebox">'+$('#spracheingabe').html()+'</div>');
-			
-			newRecognition.start();
-			newRecognition.hasstarted = true;
-			
-			newRecognition.onresult = function(event){
-				log(event.results[0][0].transcript);
-				$('#spracheingabebox .results').html(event.results[0][0].transcript.toLowerCase());
-				
-				setasfinal = window.setTimeout(function(){
-					stopspracheingabe();
-					
-					input.val($('#spracheingabebox .results').html());
-					input.trigger('keypress');
-					
-				},300);
-			}
-		}	
-	}
-	else{
-		//Funktion in Einstellungen Deaktiviert
-	}
-}
+
 function opencardslider(container){
 	if(!$('#cardslider').hasClass('toggle')){
 		$('#cardslider').html('');
@@ -195,82 +169,183 @@ function loadcards(container){
 }
 
 function start_request(view,eingabe,start){ 
-	
-	$.ajax({
-		url: "http://nickw.de/molly/suchen.php",
-		data: { id: localStorage['userid'],search: eingabe},
-		method: "POST"
-	});
-
-	//$('#overlay').show();
+	eingabe = eingabe.toLowerCase().replace(/ +(?= )/g,'').trim(); //Doppelte Leerzeichen & Am Ende und Anfang 
+	view.html('');
 	if(typeof(start) == 'undefined') start = false;
+	eingabearray = eingabe.split(" ");
+	command = '';
 	
-	request_started = true;
-	eingabe = eingabe.split(" ");
-	
-	for(var propertyName in objcommands) { //welches Object hat ID von command?
-		cur_view = new objcommands[propertyName];
-		if((cur_view.id.toLowerCase() == eingabe[0].toLowerCase()) || (typeof(cur_view.synonyms) != 'undefined' && cur_view.synonyms.toLowerCase()  == eingabe[0].toLowerCase() )){
-			view.html('').show().addClass('show');
-		
-			window.setTimeout(function(){
-				if (cur_view.hasOwnProperty('permission')){
-					permissonsallowed = checkpermission(cur_view.id,cur_view.permission);
-				}
-				if (cur_view.hasOwnProperty('origin')){
-					originsallowed = checkorigin(cur_view.id,cur_view.origin);
-				}
-			},300);	
-			
-			//view.append(getmsg('description'+propertyName)+'<br/>');
-		
-			eingabe.shift();
-			command = propertyName;
-			
-			while (eingabe.indexOf('') > -1) eingabe.splice(eingabe.indexOf(''),1); //Falls viele Lehrzeichen eingegeben.
-			
-			if(cur_view.hasOwnProperty('params')){
-				if (eingabe.length < cur_view.params.length){
-					if(cur_view.hasOwnProperty('notallparams')){
-						cur_view.notallparams(view);
-						initregulary(view,cur_view,eingabe);
-					}
-					else{
-						view.append('<li class="top">'+getmsg("needed_params")+cur_view.params.join()+'</li>');
-						if(input.val()[input.val().length-1] != ' ')  input.val(input.val()+' ');
+	for(var r = 0;r <= eingabearray.length-1; r ++){
+		if(all_comm.indexOf(eingabearray[r].toLowerCase()) > -1){
+			command = eingabearray[r];
+		}
+	}
+	id = commandtoid(command);
+	if(!id){ //Kein Command gefunden.
+		//Vorschläge, Google Suchvorschläge,Prüfen ob Schreibfehler, etc.	
+		if(ValidUrl(input.val())){
+			results.html(getmsg("idlaunch")+' '+input.val()+'...');
+			start_request(results,getmsg("idlaunch")+ input.val(),true);
+			$('#suchergebnisse').hide();
+		}
+		else if(isrechenterm(input.val())){
+			start_request(results,getmsg("idcalc")+' '+input.val(),true);
+			$('#suchergebnisse').hide();
+		}
+		else{
+			$('#suchergebnisse .matchinglits, #suchergebnisse .matchingsearchs, .aehnliche').html('');
+			$('#suchergebnisse').show();
+			setgooglevorschlaege(input.val());	
+			var firsteintrag = true;
+			for(var e = 0; e <= eingabearray.length -1; e++){
+				for(var z = 0; z <= all_comm.length-1;z++){ //For each word, watch each command. -> Ziemlich schlechte Laufzeit :/
+					if(similar_text(eingabearray[e],all_comm[z],true) > 80){
+						//Found a similar command.
+						$('#suchergebnisse #matchingCommands2 .top').html(getmsg("doyoumean"));
+						$('#suchergebnisse .aehnliche').show();
+						$('#suchergebnisse .aehnliche').html('<li><a href="#"><span class="icon-'+all_icons[all_comm[z]]+'"></span><span class="command">'+all_comm[z]+'</span></a></li>');
 					}	
-					setTimeout(function(){request_started = false;},200);
-				}
-				else{
-					log('start:'+start)
-					if (!cur_view.startdirectly && !start){
-						request_started = false;
+					else if (all_comm[z].toLowerCase().startsWith(eingabearray[e].toLowerCase())){ 
+						//Found a matching command.
+						$('#suchergebnisse #matchingCommands2 .top').html(getmsg("matching_commands"));
+						$('#suchergebnisse .matchinglits').append('<li class="'+(firsteintrag?'EnterToGo':'')+'"><a href="#"><span class="icon-'+all_icons[all_comm[z]]+'"></span><span class="command">'+all_comm[z]+'</span><span class="entercaption">'+(firsteintrag?'(Enter)':'')+'</span></a></li>');
+						firsteintrag = false;
 					}
-					else{
-						cur_view.initview(view,eingabe);
-						initregulary(view,cur_view,eingabe);
-						setTimeout(function(){
-							request_started = false;
-						},200);
-						return false;	
-					}					
 				}
+			}
+			if($('#suchergebnisse .aehnliche li').not('.top').length + $('#suchergebnisse .matchinglits li').not('top').length == 0){ 
+				//Molly hat keine Ergebnisse. Was kann Molly jetzt tun? Vorschlagen bei Google danach zusuchen?
+				$('#suchergebnisse .matchinglits').append('<li class="top">'+getmsg("nocommands")+'</li>');
+			}
+		}	
+	}
+	else{ //Ein Command gefunden -> id = id;
+		if(typeof(curCommand) != 'undefined') if(typeof(curCommand.onleave) == 'function') curCommand.onleave(results);
+	
+		$('#suchergebnisse').hide();
+		$('#matchingCommands').html('');
+		view.show();
+		curCommand = new objcommands[id];
+		window.setTimeout(function(){
+			if (curCommand.hasOwnProperty('permission')){
+				permissonsallowed = checkpermission(curCommand.id,curCommand.permission);
+			}
+			if (curCommand.hasOwnProperty('origin')){
+				originsallowed = checkorigin(curCommand.id,curCommand.origin);
+			}
+		},300);		
+
+		if(curCommand.hasOwnProperty('params')){
+			//Command braucht noch was. Wo im String befindet sich das? 
+			//Also z.B. Ort.
+			params = [];
+			for(var z = 0; z<=curCommand.params.length-1; z++){
+				switch(curCommand.params[z][0]){
+					case 'url':
+						for(var w =0; w <= eingabearray.length -1 ; w ++){
+							eingabearray[w] = eingabearray[w].replace('www');
+							if(ValidUrl(eingabearray[w])){
+								params.push(eingabearray[w]);
+							}
+						}
+					break;
+					case 'appdevelopersupport':
+						if(eingabearray.indexOf('app') > -1){
+							params.push('app');
+						}
+						else if(eingabearray.indexOf('developer') > -1){
+							params.push('developer');
+						}
+						else if(eingabearray.indexOf('support') > -1){
+							params.push('support');
+						}
+					break;
+					case 'suche':
+					case 'city':
+						//Annahme: suchbegriffe stehen immer am Ende.
+						//"Google nach ..."
+						//"Zeige Shopping für ..."
+						//Problem: Suchbegriffe mit mehreren Wörtern "hallo welt".
+						
+						//Annahme: Die Stadt stehen immer am Ende.
+						//"Wie wird das Wetter in ..." 
+						//"What's the weather like in ..."
+						//Problem: Städte mit zweiteilung "new york", ... 
+						
+						//Gucken, was steht hinter einer Präposition? z.B. nach, in,...
+						foundone = false;
+						tempeingabearray = eingabearray;
+						for(var w = 0; w <= tempeingabearray.length -1; w++){
+							if(getmsg("prepositionenfuergrammatik").indexOf(tempeingabearray[w]) > -1){
+								tempeingabearray = tempeingabearray.slice(w+1,tempeingabearray.length);
+								params.push(tempeingabearray.join(" "));
+								foundone = true;
+							}
+						}	
+						if(!foundone){
+							//Keine Präposition... :/
+							//Steht die Stadt / Suche hinter dem Command? "Wetter Solingen", "Suche HALLO", ...
+							w = eingabearray.indexOf(curCommand.id);
+							if(eingabearray.slice(w+1,eingabearray.length).join(" ").length > 0) params.push(eingabearray.slice(w+1,eingabearray.length).join(" "));
+						}
+					break;	
+					case 'term':
+						for(var w =0; w <= eingabearray.length -1 ; w ++){
+							if(isrechenterm(eingabearray[w])){
+								params.push(eingabearray[w]);
+							}
+						}
+					break;
+				}
+			}
+			if(params.length == curCommand.params.length){
+				if(!curCommand.startdirectly && !start){} //Damit z.B. Google nicht sofort startet.
+				else{ //Command soll sofort starten, bzw man hat Enter gedrückt.
+					curCommand.initview(view,params);
+					initregulary(view,curCommand,eingabearray);
+				}	
 			}
 			else{
-				cur_view.initview(view,eingabe);
-				initregulary(view,cur_view,eingabe);
-				setTimeout(function(){request_started = false;},200);
-				return false;
+				if(curCommand.hasOwnProperty('notallparams')){
+					curCommand.notallparams(view);
+					initregulary(view,curCommand,eingabearray);
+				}
+				else{
+					neededparams = '';
+					for(var q =0; q <= curCommand.params.length-1; q ++){
+						neededparams = neededparams+curCommand.params[q][1];
+					}
+					view.html('<li class="top">'+getmsg("needed_params")+neededparams+'</li>');
+				}
 			}
-			break;break;
 		}
-		
-	}
+		else{ //Keine Parameter erwartet.
+			if(!curCommand.startdirectly && !start){} //Damit z.B. Google nicht sofort startet.
+			else{ //Command soll sofort starten, bzw man hat Enter gedrückt.
+				curCommand.initview(view,[]);
+				initregulary(view,curCommand,eingabearray);
+			}	
+		}
+	}	
 }
+function commandtoid(command){
+	var q = 0;
+	var stop = false;
+	while(command.toLowerCase() != all_comm[q].toLowerCase() && !stop){
+		q++;
+		stop = q >= all_comm.length -1;
+	}	
+	if(stop) return false;
+	else return all_ids[q];
+}
+
 function initregulary(view,cur_view,eingabe){
 	if(view.attr('id') == results.attr('id') && cur_view.regulary){
-		$('#show_card_regulary').show().attr('command',cur_view.id+' '+eingabe.join(" "));
-		if(localStorage['cards'].indexOf((cur_view.id+' '+eingabe.join(" ")).trim()) == -1) $('#show_card_regulary').html(getmsg("putonwatchlist"));
+		$('#suchergebnisse').hide();
+		view.show();
+		
+		$('#show_card_regulary').show().attr('command',eingabe.join(" "));
+		if(localStorage['cards'].indexOf((eingabe.join(" ")).trim()) == -1) $('#show_card_regulary').html(getmsg("putonwatchlist"));
 		else $('#show_card_regulary').html(getmsg("alreadyonlist"));
 		
 		onetime = false;
@@ -279,6 +354,11 @@ function initregulary(view,cur_view,eingabe){
 				if(localStorage['cards'].indexOf($(this).attr('command')) == -1) localStorage['cards'] += $(this).attr('command').trim()+',';
 				else alert(getmsg("alreadyonlist"));
 				onetime = true;
+				$('#vorschlaege').clone().appendTo('body').addClass('cloned').animate({
+					bottom:0
+				},1000,function(){
+					$('.cloned').remove();
+				});
 				$('#show_card_regulary').html(getmsg("added"));
 				$('#cardslider').removeClass('nocards');
 				$('#cardslider').html('');
@@ -288,23 +368,11 @@ function initregulary(view,cur_view,eingabe){
 		});	
 		if(cur_view.hasrefresh){
 			$('.refresh').show();
-			$('.refresh').click(function(cur_view){
-				results.html('');
-				input.trigger('keypress');
+			$('.refresh').click(function(){
+				start_request(view,input.val());
 			});
 		}
 	}
-	/*if(cur_view.hasOwnProperty('getnotif')){
-		if(localStorage['getnotif'].indexOf(cur_view.id) > -1){
-			$('#show_notif').show().html(getmsg("youalreadygetnotif"));
-		}
-		else{
-			$('#show_notif').show().html(getmsg("getnotifforthis")).attr('command',cur_view.id);
-			$('#show_notif').click(function(){
-				localStorage['getnotif'] += ','+$(this).attr('command');
-			});
-		}
-	}*/
 }
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -313,12 +381,12 @@ function initcommandclick(){
 	$('.command').click(function(){
 		input.val($(this).attr('command'));
 		input.focus();
-		input.trigger('keypress');
+		input.trigger('keyup');
 		return false;
 	});
 }	
 $('.refresh').click(function(){
-	location.reloadreload();
+	location.reload();
 });
 function isrechenterm(text){
 	for(var u = 0; u<= text.length ; u++){
@@ -628,6 +696,7 @@ firststeps = function(){
 	}
 }
 function ajax(url,success){
+	results.html('Loading');
 	$.ajax({
 		url: url,
 		success: function(data){
@@ -654,8 +723,6 @@ function ajax(url,success){
 			return xhr;
 		},
 		error: function(data){
-			log('Ajax Error:');
-			log(data);
 			results.html('<div style="color:red">Error:'+data.status+':'+data.responseText+'</div>');
 		}
 	});
@@ -695,9 +762,79 @@ function setgooglevorschlaege(text){
 				suggests = jQuery.parseJSON(data);
 				if(typeof(suggests.CompleteSuggestion) == 'undefined' || suggests.CompleteSuggestion.length == 0) $('.matchingsearchs').html('<li class="top">'+getmsg("nosearchresults")+'</li>'); 
 				else{
-					for (var r = 0; r <= nachladen; r ++) $('.matchingsearchs').append('<li><a href="https://www.google.com/search?q='+suggests.CompleteSuggestion[r].suggestion.attributes.data+'&hl='+hl+'"><span class="icon-'+all_icons["google"]+'"></span>'+suggests.CompleteSuggestion[r].suggestion.attributes.data+'</a></li>');
-				}
+					r = 0;
+					while(r < nachladen && typeof(suggests.CompleteSuggestion[r]) !='undefined'){
+						$('.matchingsearchs').append('<li><a href="https://www.google.com/search?q='+suggests.CompleteSuggestion[r].suggestion.attributes.data+'&hl='+hl+'"><span class="icon-'+all_icons["google"]+'"></span>'+suggests.CompleteSuggestion[r].suggestion.attributes.data+'</a></li>');
+						r++;
+					}
+				}	
 			}
 		}
 	});
 }
+
+
+function stopspracheingabeP(){
+	$('#mic-popup').removeClass('active');
+	voiceinputstarted = false;
+}
+function startspracheingabeP(){
+	voiceinputstarted = true;
+	$('#mic-popup').addClass('active');
+	voiceinput.start();
+	if($('.bubble:last()').html() != '...') addbubble(true,'...');
+	voiceinput.onend = function(e) { 
+		stopspracheingabeP();
+	}
+	voiceinput.onresult = function(e) { 
+		for (var i = 0; i < e.results.length; i++) { 
+			if (e.results[i].isFinal) {
+				question = event.results[0][0].transcript;
+				$('.bubble:last()').html(question+'?');
+				var e = jQuery.Event("keyup");
+				e.which = e.keyCode = 999;
+				input.val(question).focus().trigger(e);
+				start_request(results,question,true);
+            } 			
+	   } 
+	}
+}
+function messagetostartspracheingabe(){
+	
+	$('#popupholder').show();
+
+	voiceinput = new webkitSpeechRecognition();
+	voiceinput.lang = navigator.language;
+	
+	voiceinputstarted = false;
+	startspracheingabeP();
+	
+	$('#mic-popup').click(function(){
+		if(!voiceinputstarted) startspracheingabeP();
+		else{
+			stopspracheingabeP();
+			voiceinput.stop();
+		}	
+		
+	});
+	$('#mic-popup').mouseover(function(){
+		$(this).addClass('hover');
+		timer = window.setTimeout(function(){
+			startspracheingabeP();
+		},3000);
+	});
+	$('#mic-popup').mouseleave(function(){
+		window.clearTimeout(timer);
+		$(this).removeClass('hover');
+	});
+	$('#backtomolly').click(function(){
+		$('#popupholder').hide();
+	});
+}
+
+function addbubble(notalt,text){
+	$('#othermsg').append('<div class="bubble '+(!notalt?'bubble-alt yellow':'')+'"><p>'+text+'</p></div>');
+}
+
+
+

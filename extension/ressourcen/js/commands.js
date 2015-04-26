@@ -7,17 +7,23 @@ function ObjCommand(pId,pIcon,pStartdirectly,pRegulary,pPermission,pOrigin,pHasR
 	this.origin = pOrigin;
 	this.hasrefresh = pHasRefresh;
 	this.params = pParams;
+	this.spoken = '';
 	this.initview = function(view,params){
 		view.html('loading');
-		localStorage['last-searches'] += ','+this.id+' '+params.join(' ');
+		localStorage['last-searches'] = localStorage['last-searches']+(localStorage['last-searches'].trim().endsWith(this.id)?'':','+this.id);
+		
 		this.getview(view,params);	
 	}
 	this.speak = function(view,string){
 		if(typeof(results) != 'undefined'){
 			if(localStorage['sprachausgabe'] == 'true' && view.attr('id') == results.attr('id')){
 				chrome.tts.speak(string,{'lang': getmsg("langcode")});
+				this.spoken = string;
 			}
-		}	
+			if($('#popupholder').length > 0 && $('#popupholder').css('display') != 'none'){
+				addbubble(false,string);
+			}
+		}
 	}
 }	
 function commands(){
@@ -83,7 +89,7 @@ function commands(){
 		}
 	}
 	this.clock = function(){
-		this.constructor(getmsg('idclock'),'alarm',true,true,'','',true,[getmsg('stadt')]);
+		this.constructor(getmsg('idclock'),'alarm',true,true,'','',true,[['city',getmsg('stadt')]]);
 		this.synonyms = getmsg('idtime');
 		this.getview = function(view,params){
 			$.get("https://maps.googleapis.com/maps/api/geocode/json?address="+encodeURI(params.join(" "))+"&sensor=false", function( data ) {
@@ -97,7 +103,18 @@ function commands(){
 					ajax("https://maps.googleapis.com/maps/api/timezone/json?location="+data.results[0].geometry.location.lat+","+data.results[0].geometry.location.lng+"&timestamp=1331161200",function(data2){
 						log(data2);
 						hours = now.getUTCHours()+data2.rawOffset/60/60;
-						time = (hours > 24? hours-24:hours)+":"+now.getUTCMinutes();
+						hours = (hours > 24? hours-24:hours);
+						
+						minutes = now.getUTCMinutes();
+						if(hours.toString().indexOf('.') > -1){ //Komma Zahl also halb stunden abweichung
+							minutes = minutes+30;
+							if(minutes > 60){
+								minutes = minutes-60;
+							}
+							hours = Math.floor(hours);
+						}
+						time = hours+':'+minutes;
+						
 						view.html(getmsg("clockausgabe").replace('{time}',time).replace('{city}',params.join(" ")));
 						cur_obj['clock'].speak(view,view.html());
 					});	
@@ -106,7 +123,7 @@ function commands(){
 		}
 	}
 	this.weather = function(){
-		this.constructor(getmsg('idweather'),'cloud',true,true,'','http://api.openweathermap.org/data/2.5/*',true,[getmsg('stadt')]);
+		this.constructor(getmsg('idweather'),'cloud',true,true,'','http://api.openweathermap.org/data/2.5/*',true,[['city',getmsg('stadt')]]);
 		this.getweather = function(view,urlplus){			
 			ajax("http://api.openweathermap.org/data/2.5/weather?" + urlplus + "&units="+localStorage["units"]+"&lang="+navigator.language,function(data){
 				if (typeof(data.main) == 'undefined'){		
@@ -165,17 +182,18 @@ function commands(){
 		}
 	}
 	this.launch = function(){
-		this.constructor(getmsg('idlaunch'),'earth',false,false,'','',false,[getmsg('url')]);
+		this.constructor(getmsg('idlaunch'),'earth',false,false,'','',false,[['url',getmsg('url')]]);
 		this.getview = function(view,params){
 			this.speak(view,getmsg("launchnow")+params[0]);
 			location = params[0].startsWith('http')?params[0]:'http://'+params[0];
 		}
 	}
 	this.google = function(){
-		this.constructor(getmsg('idgoogle'),'google',false,false,'','',false,['search']);
+		this.constructor(getmsg('idgoogle'),'google',false,false,'','',false,[['suche','search']]);
 		this.getview = function(view,params){
 			cur_obj['google'].speak(view,getmsg("googlenow")+params.join(" "));
 			location = 'https://www.google.com/#q='+params.join(" ")+'&hl='+navigator.language;	
+
 		}
 	}
 	this.recently = function(){
@@ -205,7 +223,7 @@ function commands(){
 		}
 	}
 	this.info = function(){
-		this.constructor(getmsg('idinfo'),'files-empty',true,true,'','',false,[getmsg("appdevelopersupport")]);
+		this.constructor(getmsg('idinfo'),'files-empty',true,true,'','',false,[['appdevelopersupport',getmsg("appdevelopersupport")]]);
 		this.getview = function(view,params){
 			if(params[0].trim() == 'app' || params[0].trim() == 'developer' || params[0].trim() == 'support'){
 				view.css('font-size','1em');
@@ -412,7 +430,7 @@ function commands(){
 		}
 	}
 	this.buy = function(){
-		this.constructor(getmsg('idbuy'),'cart',false,false,'','',false,[getmsg("suchbegriff")]);
+		this.constructor(getmsg('idbuy'),'cart',false,false,'','',false,[['suche',getmsg("suchbegriff")]]);
 		this.synonym = getmsg("idshopping");
 		this.getview = function(view,params){		
 			cur_obj['buy'].speak(view,getmsg("searchingfor").replace('{search}',params.join(" ")));
@@ -420,14 +438,14 @@ function commands(){
 		}
 	}
 	this.image = function(){
-		this.constructor(getmsg('idimage'),'image',false,false,'','',false,[getmsg("suchbegriff")]);
+		this.constructor(getmsg('idimage'),'image',false,false,'','',false,[['suche',getmsg("suchbegriff")]]);
 		this.getview = function(view,params){
 			cur_obj['image'].speak(view,getmsg("searchingfor").replace('{search}',params.join(" ")));
 			location = 'https://www.google.com/search?site=imghp&tbm=isch&hl='+navigator.language+'&q='+params.join(" ");
 		}
 	}	
 	this.wiki = function(){
-		this.constructor(getmsg('idwiki'),'library',false,true,'','',false,[getmsg("suchbegriff")]);
+		this.constructor(getmsg('idwiki'),'library',false,true,'','',false,[['suche',getmsg("suchbegriff")]]);
 		this.synonym = 'wiki';
 		this.getview = function(view,params){
 			cur_obj['wiki'].speak(view,getmsg("searchingfor").replace('{search}',params.join(" ")));
@@ -435,7 +453,7 @@ function commands(){
 		}
 	}
 	this.solve = function(){
-		this.constructor(getmsg('idcalc'),'calculate',true,true,'','',false,'');
+		this.constructor(getmsg('idcalc'),'calculate',true,true,'','',false,[['term',getmsg("entercalc")]]);
 		this.synonym = getmsg('idsynonymcalc');
 		this.getview = function(view,params){
 			if (params.join('').length > 2){
@@ -454,7 +472,7 @@ function commands(){
 		}
 	}
 	this.rss = function(){
-		this.constructor(getmsg('idrss'),'feed2',true,true,'','*://*/*',true,[getmsg("rssfeedurl")]);
+		this.constructor(getmsg('idrss'),'feed2',true,true,'','*://*/*',true,[['url',getmsg("rssfeedurl")]]);
 		this.getnotif = function(){
 			return '';
 		}

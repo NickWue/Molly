@@ -83,7 +83,7 @@
 	"temperature":{"message":"temp"},
 	"maxtemp":{"message":"max. temp"},
 	"mintemp":{"message":"min. temp"},
-	"weatherforcast":{"message":"Es ist {temp} Grad in {city}. Das Wetter ist {weather}"},
+	"weatherforcast":{"message":"Es ist {temp} Grad in {city}. Der Himmel ist {weather}"},
 	"wetterin":{"message":"wetter in"},
 	"herebookmarks":{"message":"Hier sind deine Lesezeichen"},
 	"launchnow":{"message":"Molly startet nun"},
@@ -136,6 +136,7 @@
 	"idcalc":{ "message":"rechne" },
 	"idsynonymcalc":{ "message":"calc" },
 	"descriptioncalc":{ "message":"Starten Sie einen kleinen Taschenrechner. Dieser beherrscht neben den Grundrechenarten (+-*/) auch alle Features der JavaScriptsprache. Um zum Beispiel die Wurzel von 9 auszurechnen geben Sie Math.sqrt(9) ein. Der Taschenrechner funktioniert übrigens auch, wenn sie statt &ldquo;Rechne&ldquo; einfach die Aufgabe z.B. 2+5 eingeben." },
+	"entercalc":{ "message":"Rechenterm" },
 	
 	"idmail":{ "message":"mail" },
 	"descriptionmail":{ "message":"Sehen Sie ihre Emails." },
@@ -144,7 +145,7 @@
 	"weatheratlocation":{ "message":"Das Wetter:" },
 	"descriptionweather":{ "message":"Hier sehen Sie das Wetter an ihrem ungefähren Wohnort. Geben Sie einen Ort hinter dem Befehl ein, um das Wetter an einem beliebigen Ort weltweit zu sehen." },
 	
-	"idclock":{ "message":"Uhr" },
+	"idclock":{ "message":"uhr" },
 	"idtime":{ "message":"" },
 	"descriptionclock":{ "message":"Finden Sie die Uhrzeit an einem beliebigen Ort weltweit heraus." },
 	
@@ -269,5 +270,7 @@
 	"msghelpsprachausgabeaus":{"message":"Sprachausgabe ausstellen"},
 	"msghelpspenden":{"message":"Spenden"},
 	"msghelpspracheingabebeimbrowsen":{"message":"Spracheingabe während des Browsen"},
-	"msghelpshowcardslideronstart":{"message":"Klicken Sie hierzu, im Cardslider auf das Auge unten rechts. Jetzt wird der Cardslider dauerhaft beim start von Molly angezeigt, und Ihre Informationen sind noch schneller erreichbar."}
+	"msghelpshowcardslideronstart":{"message":"Klicken Sie hierzu, im Cardslider auf das Auge unten rechts. Jetzt wird der Cardslider dauerhaft beim start von Molly angezeigt, und Ihre Informationen sind noch schneller erreichbar."},
+	
+	"prepositionenfuergrammatik":{"message":"innachfür"}
 }

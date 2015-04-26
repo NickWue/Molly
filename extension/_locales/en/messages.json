@@ -82,7 +82,7 @@
 	"temperature":{"message":"temp"},
 	"maxtemp":{"message":"max. temp"},
 	"mintemp":{"message":"min. temp"},
-	"weatherforcast":{"message":"It's {temp} Degrees in {city}. The weather is {weather}"},
+	"weatherforcast":{"message":"It's {temp} Degrees in {city}. The sky is {weather}"},
 	"wetterin":{"message":"weather in"},
 	"herebookmarks":{"message":"Here are you bookmarks"},
 	"launchnow":{"message":"Molly starts"},
@@ -136,6 +136,7 @@
 	"idsynonymcalc":{ "message":"calc" },
 	"descriptioncalc":{ "message":"Starten Sie einen kleinen Taschenrechner. Dieser beherrscht neben den Grundrechenarten (+-*/) auch alle Features der JavaScriptsprache. Um zum Beispiel die Wurzel von 9 auszurechnen geben Sie Math.sqrt(9) ein. Der Taschenrechner funktioniert übrigens auch, wenn sie statt &ldquo;Rechne&ldquo; einfach die Aufgabe z.B. 2+5 eingeben." },
 	"descriptioncalc":{ "message":"Start a little calculator. It can all the standart calculus, and also things from javascript. E.g. To solve a root just enter \"Math.sqrt(9)\" " },
+	"entercalc":{ "message":"exercise" },
 	
 	"idmail":{ "message":"mail" },
 	"descriptionmail":{ "message":"View your emails." },
@@ -269,5 +270,7 @@
 	"msghelpsprachausgabeaus":{"message":"Go to <a href=\"./ressourcen/html/options.html\">options</a>, and then you will see how to do. "},
 	"msghelpspenden":{"message":"enter \"info support\" to support the developer."},
 	"msghelpspracheingabebeimbrowsen":{"message":"Use the shortcut, or the popup the ask molly questions without starting a new tab."},
-	"msghelpshowcardslideronstart":{"message":"Click on the eye at the right bottom corner after opening the information slider."}
+	"msghelpshowcardslideronstart":{"message":"Click on the eye at the right bottom corner after opening the information slider."},
+	
+	"prepositionenfuergrammatik":{"message":"forinbyafterat"}
 }
