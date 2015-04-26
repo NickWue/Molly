@@ -1,4 +1,4 @@
-# Molly
+## Molly - language Assistant (New Tab)
 ###Molly offers several features like weather,rss feeds, calculator and more to enhance the original New Tab. Molly knows the answer.
 
 ###What it does:
