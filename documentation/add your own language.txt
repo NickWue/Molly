@@ -1,6 +1,0 @@
-You can add your own language very quickly.
-
-1) Enter "extension/_locales/".
-2) add a directory with the language code.
-3) add a file messages.json, in which you copy a language, which is ready, and which works.
-4) translate all the strings, and save. 

@@ -32,7 +32,7 @@
 		"tts",
 		"geolocation",
 		"chrome://extension-icon/",
-		
+		"fileSystem"
 	],
 	 "commands": {
           "startwithcardslider": {

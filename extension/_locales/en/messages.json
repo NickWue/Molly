@@ -45,7 +45,7 @@
 	"support":{"message":"Support."},
 	"options":{"message":"Settings"},
 	"importantcommands":{"message":"Commands:"},
-	"spracheingabeaktiv":{"message":"Voice input active! Stop"},
+	"spracheingabe":{"message":"- voice input."},
 	"dontscream":{"message":"Don't scream, I hear you."},
 	
 	"notification":{"message":" Notifications:"},

@@ -36,7 +36,6 @@ function styles(){
 			
 		break;
 	}
-	if(localStorage['settingssprachsuche'] == 'false') $('#mic').hide();
 	$('#cardslider').css('top',$('#MainContent').offset().top+$('#MainContent').height()+50)
 }
 
