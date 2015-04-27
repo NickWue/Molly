@@ -24,7 +24,7 @@ Feedback is welcome! Open a ticket, or write an Email to nick.wue@gmail.com
 I try to answer as soon as possible! 
 
 ###License (MIT)
-I'm not kidding, you can copy / download it, what ever you want, you just have to refear to this GitHub Repository, and please always notice that I'm the originally autor. So feel free to create a Firefox Version or something like that.
+I'm not kidding, you can copy / download it, what ever you want, you just have to refer to this GitHub Repository, and please always notice that I'm the originally autor. So feel free to create a Firefox Version or something like that.
 
 ###Autor:
 Autor is Nick Wüsthoff, from the webdesign agency [nickw.de](http://nickw.de) 
