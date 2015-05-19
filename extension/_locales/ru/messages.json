@@ -1,0 +1,276 @@
+{
+ "softwarename":{"message":"Молли"},
+
+ "aboutdeveloper":{"message":"Разработчик Молли nickw.de"}, 
+ "aboutapp":{"message":"Молли очень умная :)"}, 
+ "contributetomolly":{"message":"Помочь с разработкой Молли (GitHub)"}, 
+ "bewerten":{"message":"Оставить отзыв"}, 
+ 
+ "pleasewait":{"message":"Подождите секунду."},
+ "letsstart":{"message":"Начнём!"},
+ 
+ "startnewtabfirst":{"message":"Пожалуйста откройте новую вкладку перед тем как продолжить."},
+ 
+ "launch":{"message":""},
+ "doyoumean":{"message":"Вы имели ввиду"},
+ "pressentertostart":{"message":"Пожалуйста нажмите Enter, чтобы начать текущий ввод."},
+ "matching_commands":{"message":"Ваш запрос совпадает со следующим: "},
+ "nocommands":{"message":"Совпадений нет."},
+ "loading":{ "message" : "Загрузка"},
+ "needed_params":{ "message":"Пожалуйста, введите соответствующие параметры: "},
+ "KeineParameter":{ "message":"параметры не предоставлены. "},
+ "typehelpforhelp":{"message":"Введите \"Help\" в случае если вам нужна моя помощь."},
+ "welcome":{"message":"Привет, меня зовут Молли. Я здесь чтобы помочь тебе находить информацию, которая может быть тебе интересна. Просто спроси меня."},
+ "thousandtimesused":{"message":"Привет, это снова я. Вы пользовались мной уже много раз. Может пришло время немного пожертвовать? :)"},
+ "support":{"message":"Пожалуйста поддержите это расширение"},
+ "info":{"message":"Информация"},
+ "doyouevenknow":{"message":"Вы знали..? "},
+ 
+ "headline1":{ "message": "Привет {name}! Что хочешь узнать?" },
+ "headline2":{ "message": "Привет {name}! Могу ли я чем-нибудь помочь?" },
+ 
+ "nosearchresults":{"message":"Нет результатов поиска."},
+ "nocardsfornotification":{"message":"Sie haben keine Karten für Benachrichtigungen ausgewählt."},
+ "removesuccessfull":{"message":"Успешно удалена."},
+ "dropcardstoremove":{"message":"Удалите карточки, если вы в них больше не заинтересованы."},
+ "nocardstoshowincardslider":{"message":"У вас нет информации, в которой вы постоянно заинтересованы. Вы можете добавить её после того, как зададите вопрос и нажмёте на ссылку \"Я заинтересован\"."},
+ "alreadyonlist":{"message":"Вы уже заинтересованы в этой информации!"},
+ "putonwatchlist":{"message":"Я заинтересован."},
+ "youalreadygetnotif":{"message":"Вы уже получаете уведомления."},
+ "getnotifforthis":{"message":"Вы хотите получать уведомления по этой информации?"},
+ "commandneedspermission":{"message":"Этой информации необходимо разрешение:"},
+ "cantviewwithoutpermission":{"message":"Без этого разрешения вы не сможете видеть эту информацию."},
+ 
+ "menu":{"message":"Меню"},
+ "support":{"message":"Поддержка"},
+ "options":{"message":"Настройки"},
+ "importantcommands":{"message":"Команды:"},
+ "spracheingabe":{"message":" - голосовой помощник."},
+ "dontscream":{"message":"Не кричи, я тебя слышу."},
+ 
+ "notification":{"message":" Уведомления:"},
+ "interestingcards":{"message":"Информация, которая тебе интересна."},
+ 
+ "fremder":{"message":"незнакомец"},
+ "yourname":{"message":"Как твоё имя?"},
+ "startwithoutname":{"message":" Начать без имени (вы можете добавить его позже когда захотите)"},
+ 
+ "backtomolly":{"message":" Вернуться к Молли"},
+ "sprachausgabeexplain":{"message":"Голосовое сопровождение (Молли озвучит ответы)"},
+ "sprachsuche":{"message":"голосовой ввод"},
+ "alwayslisten":{"message":"всегда активна (beta) (Скажи \"ОК Молли\" чтобы начать голосовой ввод)"},
+ "ton":{"message":"звук уведомления"},
+ "desktopnotification":{"message":"Уведомления на рабочем столе"},
+ "themes":{"message":"Темы"},
+ "standarttheme":{"message":"Стандартная тема"},
+ "minimaltheme":{"message":"Минималистичная тема"},
+ "minimalexplain":{"message":"(рекомендуется для медленных компьютеров. Молли будет работать быстрее, но не столь хорошо выглядеть)"},
+ "units":{"message":"Какие единицы измерения предпочитаете?"},
+ "changesaresaved":{"message":"Все изменения сохранены."},
+ "resetchanges":{"message":"Сбросить настройки."},
+ 
+ "sprachausgabehilfe":{"message":"Вот вся информация, которую Молли может вам сказать."},
+ "morethanonecity":{"message":"Извините, найдено больше одного города. Введите страну."},
+ "nocityfound":{"message":"Город не найден."},
+ "clockausgabe":{"message":"В {city} сейчас {time}"},
+ 
+ "appdevelopersupport":{"message":"app/developer/support"},
+ "rssfeedurl":{"message":"Адрес RSS фида"},
+ "url":{"message":"Адрес сайта"},
+ "stadt":{"message":"Город"},
+ "wetter":{"message":"Погода"},
+ "temperature":{"message":"Температура:"},
+ "maxtemp":{"message":"Макс. температура"},
+ "mintemp":{"message":"Мин. температура"},
+ "weatherforcast":{"message":"Сейчас {temp} градусов в {city}. На небе {weather}"},
+ "wetterin":{"message":"Погода в"},
+ "herebookmarks":{"message":"Вот ваши закладки"},
+ "launchnow":{"message":"Молли запустилась"},
+ "googlenow":{"message":"Молли гуглит"},
+ "showverlauf":{"message":"Показать всю историю"},
+ "hererecentlyclosed":{"message":"Вот ваша история"},
+ "someinfosabout":{"message":"Вот информация о "},
+ "pleaseenterparam":{"message":"Введите \"app\",\"developer\" или \"support\""},
+ "cpuuseisat":{"message":"Загрузка CPU: {data}%"},
+ "memoryuseisat":{"message":"Использование RAM: {data}%"},
+ "heretosites":{"message":"Вот ваши наиболее посещаемые сайты."},
+ "suggestacard":{"message":"Предложить функцию."},
+ "heredownloads":{"message":"Вот ваши загрузки."},
+ "searchfor":{"message":"Вот результаты поиска"},
+ "herenews":{"message":"Вот последние новости"},
+ "hereareyournotes":{"message":"Вот ваши заметки"},
+ "nonotes":{"message":"У вас нет заметок!"},
+ "enteryournote":{"message":"Введите заметку."},
+ "addedtonotes":{"message":"\"{note}\" была добавлена в ваши заметки."},
+ "added":{"message":"Успешно добавлено (смотри ниже)!"},
+ "alarmringin":{"message":"Будильник прозвенит через {min} минут"},
+ "keinalarm":{"message":"У вас нет будильников. Добавьте их через поле ввода."},
+ "enteratime":{"message":"Введите через сколько минут будильник должен прозвенеть."},
+ "lachen":{"message":"Ха-ха"},
+ "searchingfor":{"message":"Поиск {search}"},
+ "enteraufgabe":{"message":"Введите запрос."},
+ "entervalidstream":{"message":"Введённый RSS фид неправилен."},
+ "suchbegriff":{"message":"поисковый запрос"},
+ "nochnefrage":{"message":"Всё ещё есть вопросы?"},
+
+ "ok":{"message":"ОК"},
+ "allow":{"message":"Разрешить"},
+ "deny":{"message":"Отклонить"},
+ "cancel":{"message":"Отмена"},
+ 
+ "idapps":{ "message":"apps" },
+ "descriptionapps":{ "message":"Молли покажет ваши расширения." },
+ "sprachausgabeapps":{"message":"Вот ваши расширения."},
+ 
+ "idbookmarks":{ "message":"bookmarks"},
+ "descriptionbookmarks":{ "message":"Молли покажет ваши закладки." },
+ 
+ "idrss":{ "message":"rss" },
+ "descriptionrss":{ "message":"Abbonieren Sie einen RSS Stream. Geben Sie hierzu &ldquo;RSS&ldquo; und anschließend die URL des RSS Streams ein. Diesen finden Sie auf fast jeder großen Website. Hiermit können Sie sich zum Beispiel News zusammenstellen. Ein weiteres Beispiel ist ihr persönlicher Facebook Newsstream." },
+ "descriptionrss":{ "message":"Просмотр RSS фидов. Просто введите \"RSS\", а потом адрес потока. Почти любой сайт имеет RSS фид, например Facebook, новостные издания, сообщества, блоги и тп." },
+ 
+ "idlaunch":{ "message":"launch" },
+ "descriptionlaunch":{ "message":"Открыть сайт." },
+ 
+ "idcalc":{ "message":"solve" },
+ "idsynonymcalc":{ "message":"calc" },
+ "descriptioncalc":{ "message":"Starten Sie einen kleinen Taschenrechner. Dieser beherrscht neben den Grundrechenarten (+-*/) auch alle Features der JavaScriptsprache. Um zum Beispiel die Wurzel von 9 auszurechnen geben Sie Math.sqrt(9) ein. Der Taschenrechner funktioniert übrigens auch, wenn sie statt &ldquo;Rechne&ldquo; einfach die Aufgabe z.B. 2+5 eingeben." },
+ "descriptioncalc":{ "message":"Небольшой калькулятор. Он может работать с обычными вычислениями, а также с некоторыми из JavaScript (напр. \"Math.sqrt(9)\")" },
+ "entercalc":{ "message":"пример" },
+ 
+ "idmail":{ "message":"mail" },
+ "descriptionmail":{ "message":"Посмотреть ваши письма." },
+ 
+ "idweather":{ "message":"weather" },
+ "weatheratlocation":{ "message":"Погода:" },
+ "descriptionweather":{ "message":"Покажет погоду для вашего местоположения. Введите город чтобы увидеть погоду в любом городе мира." },
+ 
+ "idclock":{ "message":"clock" },
+ "idtime":{ "message":"time" },
+ "descriptionclock":{ "message":"Покажет сколько времени в любом городе мира." },
+ 
+ "idnews":{ "message":"news" },
+ "descriptionnews":{ "message":"Новости (источник: Google News)" },
+ 
+ "idinfo":{ "message":"info" },
+ "descriptioninfo":{ "message":"Информация о Молли." },
+ 
+ "idsystem":{ "message":"system" },
+ "descriptioninfo":{ "message":"Информация о вашей системе." },
+
+ "idmusic":{ "message":"music" },
+ "descriptionmusic":{ "message":"Искать музыку." },
+ 
+ "idgame":{ "message":"games" },
+ "descriptiongame":{ "message":"Искать игры." },
+ 
+ "idwiki":{ "message":"wikipedia" },
+ "descriptionwiki":{ "message":"Поиск по статьям Википедии." },
+ 
+ "idmovie":{ "message":"movie" },
+ "descriptionmovie":{ "message":"Искать фильмы." },
+ 
+ "idjoke":{ "message":"joke" },
+ "descriptionjoke":{ "message":"Посмотреть случайный пост с 9GAG." },
+ 
+ "idalarm":{ "message":"alarm" },
+ "descriptionalarm":{ "message":"Поставить будильник." },
+ 
+ "idrecently":{ "message":"history" },
+ "descriptionrecently":{ "message":"Молли покажет вашу исотрию посещений." },
+ 
+ "idfacebook":{ "message":"facebook" },
+ "descriptionfacebook":{ "message":"Facebook News." },
+ 
+ "iddownloads":{ "message":"downloads" },
+ "descriptiondownloads":{ "message":"Посмотреть ваши загрузки." },
+ 
+ "idninegag":{ "message":"ninegag" },
+ "descriptionninegag":{ "message":"9GAG API." },
+ 
+ "idsport":{ "message":"sport" },
+ "descriptionsport":{ "message":"Некоторая спортивная информация." },
+ 
+ "idblog":{ "message":"blog" },
+ "descriptionblog":{ "message":"Искать блоги." },
+ 
+ "idquote":{ "message":"quote" },
+ "descriptionquote":{ "message":"Посмотреть великие цитаты." },
+ 
+ "idtopsites":{ "message":"topsites" },
+ "descriptiontopsites":{ "message":"Посмотреть ваши наиболее посещаемые сайты." },
+ 
+ "idtv":{ "message":"tv" },
+ "descriptiontv":{ "message":"Что на ТВ?" },
+ 
+ "idbuy":{ "message":"buy" },
+ "idshopping":{ "message":"einkaufen" },
+ "descriptionbuy":{ "message":"Искать по интернет-магазинам." },
+ 
+ "idwolfram":{ "message":"wolfram" },
+ "descriptionwolfram":{ "message":"" },
+ 
+ "idimage":{ "message":"images" },
+ "descriptionimage":{ "message":"Поиск изображений." },
+ 
+ "idcall":{ "message":"call" },
+ "descriptioncall":{ "message":"Позвони кому-нибудь." },
+ 
+ "idnotes":{ "message":"notes" },
+ "descriptionnotes":{ "message":"Посмотреть или добавить заметки." },
+ 
+ "idcalendar":{ "message":"calender" },
+ "descriptioncalendar":{ "message":"Посмотри календарь." },
+ 
+ "idhelp":{ "message":"help" },
+ "descriptioncalendar":{ "message":"Помощь." },
+ 
+ "idyoutube":{ "message":"youtube" },
+ "descriptionyoutube":{ "message":"Искать на YouTube." },
+ 
+ "idstocks":{ "message":"shares" },
+ "descriptionstocks":{ "message":"Искать акции." },
+ 
+ "idreddit":{ "message":"reddit" },
+ "descriptionreddit":{ "message":"Искать на Reddit." },
+ 
+ "idsuggest":{ "message":"suggest" },
+ "descriptionsuggest":{ "message":"Предложить новую функцию." },
+ 
+ "idgmail":{"message":"Gmail"},
+ "idcucknorris":{"message":"ChuckNorris"},
+ "descriptioncucknorris":{"message":"Смешная шутка про Чака Норриса."},
+ 
+ "idgoogle":{ "message":"google" },
+ "idsearch":{ "message":"suchen" },
+ "descriptiongoogle":{ "message":"Искать в Google.." },
+ 
+ "klicktostart":{"message":""},
+ 
+ "langcode":{"message":"ru-RU"},
+ 
+ "startwithfirststep":{"message":"Посмотреть \" вводное \" обучение повторно."},
+ 
+ "firststeps1":{"message":"Это главное поле ввода. Вводите здесь ваши вопросы, например \"Какая сейчас погода\", и Молли ответит. Чтобы увидеть о чём можно спросить Молли введите \"Помощь\" "},
+ "firststeps2":{"message":"Здесь ваши наиболее посещаемые сайты. Просто подвиньте курсор к левой части окна чтобы увидеть их."},
+ "firststeps3":{"message":"Здесь вы найдёте карточки с интересной вам информацией. Нажмите на \"Я заинтересован\" после ввода вопроса, чтобы сохранить информацию здесь."},
+ "firststeps4":{"message":"Поздравляю, вы закончили \"вводное\" обучение. Но здесь ещё столько можно найти. Начнём!"},
+ 
+ "newupdate":{"message":"Новое обновление установлено. В нём много новых функций. Просто попробуй!"},
+ 
+ "backtoquestions":{"message":"Назад к вопросам"},
+ "morehelp":{"message":"Справочная информация"},
+ "antwort":{"message":"Ответ"},
+ 
+ "helpsprachausgabeaus":{"message":"Выключить голосовое сопровождение"},
+ "helpspenden":{"message":"Пожертвовать"},
+ "helpspracheingabebeimbrowsen":{"message":"Голосовой ввод во время сёрфинга"},
+ "helpshowcardslideronstart":{"message":"Держать окно с информацией открытым."},
+
+ "msghelpsprachausgabeaus":{"message":"Перейдите в <a href=\"./ressourcen/html/options.html\">настройки</a> и там вы найдёте как это сделать. "},
+ "msghelpspenden":{"message":"Введите \"info support\" чтобы поддержать разработчика."},
+ "msghelpspracheingabebeimbrowsen":{"message":"Используйте ярлык или иконку расширения, чтобы спросить Молли не открывая новую вкладку"},
+ "msghelpshowcardslideronstart":{"message":"Нажмите на глаз у нижней правой границы окна после открытия информационного ползунка."},
+ 
+ "prepositionenfuergrammatik":{"message":"forinbyafterat"}
+}
