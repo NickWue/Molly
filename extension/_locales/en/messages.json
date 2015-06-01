@@ -126,7 +126,6 @@
 	"descriptionbookmarks":{ "message":"Molly show your bookmarks." },
 	
 	"idrss":{ "message":"rss" },
-	"descriptionrss":{ "message":"Abbonieren Sie einen RSS Stream. Geben Sie hierzu &ldquo;RSS&ldquo; und anschließend die URL des RSS Streams ein. Diesen finden Sie auf fast jeder großen Website. Hiermit können Sie sich zum Beispiel News zusammenstellen. Ein weiteres Beispiel ist ihr persönlicher Facebook Newsstream." },
 	"descriptionrss":{ "message":"abbonate a rss stream. Just enter \"RSS\" and then the url of the stream. Almost every big website have a rss stream. Like facebook, news, communitys, blogs." },
 	
 	"idlaunch":{ "message":"launch" },
@@ -134,7 +133,6 @@
 	
 	"idcalc":{ "message":"solve" },
 	"idsynonymcalc":{ "message":"calc" },
-	"descriptioncalc":{ "message":"Starten Sie einen kleinen Taschenrechner. Dieser beherrscht neben den Grundrechenarten (+-*/) auch alle Features der JavaScriptsprache. Um zum Beispiel die Wurzel von 9 auszurechnen geben Sie Math.sqrt(9) ein. Der Taschenrechner funktioniert übrigens auch, wenn sie statt &ldquo;Rechne&ldquo; einfach die Aufgabe z.B. 2+5 eingeben." },
 	"descriptioncalc":{ "message":"Start a little calculator. It can all the standart calculus, and also things from javascript. E.g. To solve a root just enter \"Math.sqrt(9)\" " },
 	"entercalc":{ "message":"exercise" },
 	
