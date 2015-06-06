@@ -1,4 +1,4 @@
-﻿{
+{
 	"softwarename":{"message":"Molly"},
 
 	"aboutdeveloper":{"message":"nickw.de is the developer of Molly."},	
@@ -21,7 +21,7 @@
 	"KeineParameter":{ "message":"no parameters expected. "},
 	"typehelpforhelp":{"message":"Please type \"Help\" in case you need my assistance."},
 	"welcome":{"message":"Hey my name is Molly. I am going to help you to find information in which you might be interested in. Just ask me."},
-	"thousandtimesused":{"message":"Hey it's me again. You already used me a thousand times. Don't you think it's time to give a little donation?:"},
+	"thousandtimesused":{"message":"Hey it's me again. You've already used me a thousand times. Don't you think it's time to give a little donation?:"},
 	"support":{"message":"Please support this extension"},
 	"info":{"message":"Info"},
 	"doyouevenknow":{"message":"Did you already know..? "},
@@ -33,10 +33,10 @@
 	"nocardsfornotification":{"message":"Sie haben keine Karten für Benachrichtigungen ausgewählt."},
 	"removesuccessfull":{"message":"successfully removed."},
 	"dropcardstoremove":{"message":"Drop cards if you aren't interested anymore."},
-	"nocardstoshowincardslider":{"message":"You have no information, you are interested in regulary. You can add information after you ask a question, and click on the \"I'm interested regulary\" link."},
+	"nocardstoshowincardslider":{"message":"You have no information you are interested in yet. You can add information after you ask a question, and click on the \"I'm interested regulary\" link."},
 	"alreadyonlist":{"message":"You already are interested in this information!"},
 	"putonwatchlist":{"message":"I'm interested regulary."},
-	"youalreadygetnotif":{"message":"You already get notification."},
+	"youalreadygetnotif":{"message":"You already get notifications."},
 	"getnotifforthis":{"message":"Do you want notification for this information?"},
 	"commandneedspermission":{"message":"This information still needs permissions:"},
 	"cantviewwithoutpermission":{"message":"Without this permission you can't see this information."},
@@ -49,7 +49,7 @@
 	"dontscream":{"message":"Don't scream, I hear you."},
 	
 	"notification":{"message":" Notifications:"},
-	"interestingcards":{"message":"Information, you are interested in."},
+	"interestingcards":{"message":"Information you find interesting."},
 	
 	"fremder":{"message":"Stranger"},
 	"yourname":{"message":"What's your name?"},
@@ -69,10 +69,10 @@
 	"changesaresaved":{"message":"All Changes are saved."},
 	"resetchanges":{"message":"reset Molly."},
 	
-	"sprachausgabehilfe":{"message":"Here are all the information, which Molly can tell you something about."},
+	"sprachausgabehilfe":{"message":"Here's some information that Molly can tell you something about."},
 	"morethanonecity":{"message":"Sorry there are more than one citys. Please enter a country."},
 	"nocityfound":{"message":"No city found."},
-	"clockausgabe":{"message":"It's {time}Clock in {city}"},
+	"clockausgabe":{"message":"It's {time} in {city}"},
 	
 	"appdevelopersupport":{"message":"app/developer/support"},
 	"rssfeedurl":{"message":"Url of the RSS Feed"},
@@ -80,8 +80,8 @@
 	"stadt":{"message":"City"},
 	"wetter":{"message":"Weather"},
 	"temperature":{"message":"temp"},
-	"maxtemp":{"message":"max. temp"},
-	"mintemp":{"message":"min. temp"},
+	"maxtemp":{"message":"high"},
+	"mintemp":{"message":"low"},
 	"weatherforcast":{"message":"It's {temp} Degrees in {city}. The sky is {weather}"},
 	"wetterin":{"message":"weather in"},
 	"herebookmarks":{"message":"Here are you bookmarks"},
@@ -99,11 +99,11 @@
 	"searchfor":{"message":"Search for"},
 	"herenews":{"message":"Here are the news"},
 	"hereareyournotes":{"message":"Here are your notes"},
-	"nonotes":{"message":"You doesn't have notes!"},
+	"nonotes":{"message":"You don't have any notes yet!"},
 	"enteryournote":{"message":"enter your note."},
 	"addedtonotes":{"message":"\"{note}\" was added to your notes."},
 	"added":{"message":"Successfully added (watch out at the bottom)!"},
-	"alarmringin":{"message":"alarm will ring in {min}min"},
+	"alarmringin":{"message":"alarm will ring in {min}minutes"},
 	"keinalarm":{"message":"You have no alarms. Add one with the input field."},
 	"enteratime":{"message":"Enter the minutes after the alarm should ring."},
 	"lachen":{"message":"Haha"},
@@ -126,14 +126,13 @@
 	"descriptionbookmarks":{ "message":"Molly show your bookmarks." },
 	
 	"idrss":{ "message":"rss" },
-	"descriptionrss":{ "message":"abbonate a rss stream. Just enter \"RSS\" and then the url of the stream. Almost every big website have a rss stream. Like facebook, news, communitys, blogs." },
-	
+	"descriptionrss":{ "message":"Subscribe to a rss stream. Just enter \"RSS\" and then the url of the stream." },
 	"idlaunch":{ "message":"launch" },
 	"descriptionlaunch":{ "message":"Launch a website." },
 	
 	"idcalc":{ "message":"solve" },
 	"idsynonymcalc":{ "message":"calc" },
-	"descriptioncalc":{ "message":"Start a little calculator. It can all the standart calculus, and also things from javascript. E.g. To solve a root just enter \"Math.sqrt(9)\" " },
+	"descriptioncalc":{ "message":"Start a little calculator. It can do all the standar calculations, and also things from javascript. E.g. To solve a root just enter \"Math.sqrt(9)\" " },
 	"entercalc":{ "message":"exercise" },
 	
 	"idmail":{ "message":"mail" },
@@ -157,13 +156,13 @@
 	"descriptioninfo":{ "message":"Information about your system." },
 
 	"idmusic":{ "message":"music" },
-	"descriptionmusic":{ "message":"Search for Musik." },
+	"descriptionmusic":{ "message":"Search for Music." },
 	
 	"idgame":{ "message":"games" },
 	"descriptiongame":{ "message":"Search for Games." },
 	
 	"idwiki":{ "message":"wikipedia" },
-	"descriptionwiki":{ "message":"Search for wikipedia entry." },
+	"descriptionwiki":{ "message":"Search for a wikipedia entry." },
 	
 	"idmovie":{ "message":"movie" },
 	"descriptionmovie":{ "message":"Search for movies." },
@@ -199,7 +198,7 @@
 	"descriptiontopsites":{ "message":"View your most visited websites." },
 	
 	"idtv":{ "message":"tv" },
-	"descriptiontv":{ "message":"What's on at TV?" },
+	"descriptiontv":{ "message":"What's on TV?" },
 	
 	"idbuy":{ "message":"buy" },
 	"idshopping":{ "message":"einkaufen" },
@@ -214,7 +213,7 @@
 	"idcall":{ "message":"call" },
 	"descriptioncall":{ "message":"Call somebody." },
 	
-	"idnotes":{ "message":"notesn" },
+	"idnotes":{ "message":"notes" },
 	"descriptionnotes":{ "message":"view and add notes." },
 	
 	"idcalendar":{ "message":"calender" },
